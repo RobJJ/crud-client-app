@@ -1,4 +1,5 @@
 import React, { useRef } from "react";
+import ClientList from "../ClientList/ClientList-parent-component";
 //
 //
 function AddClient(params) {
@@ -19,7 +20,7 @@ function AddClient(params) {
   };
   //
   return (
-    <div className="w-1/2 h-1/2 bg-blue-200 p-2">
+    <div className="w-1/2 h-1/2 bg-blue-200 p-2 flex flex-col">
       <div className="w-full bg-red-200 flex flex-col">
         <h2
           onClick={handleClientExpand}
@@ -30,7 +31,7 @@ function AddClient(params) {
         <form
           onSubmit={handleClientFormSubmit}
           ref={addClientForm}
-          className="flex flex-col gap-2 text-center"
+          className="flex flex-col gap-2 text-center hidden"
         >
           <div>
             <input
@@ -68,6 +69,8 @@ function AddClient(params) {
           </button>
         </form>
       </div>
+      {/* CLIENT LIST COMPONENT WILL BE BELOW HERE */}
+      <ClientList />
     </div>
   );
 }
