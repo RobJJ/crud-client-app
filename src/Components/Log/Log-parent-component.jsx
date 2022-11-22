@@ -1,4 +1,7 @@
 import React, { useRef, useState } from "react";
+// Component imports
+import LogClass from "./Log-class-component";
+import LogPrivate from "./Log-private-component";
 //
 const privateInfo = {
   name: "private",
@@ -8,10 +11,14 @@ const classInfo = {
   name: "class",
   info: "class stuff here",
 };
+const LogPage = {
+  private: <LogPrivate />,
+  class: <LogClass />,
+};
 
 function Log(params) {
   //
-  const [currentLogPage, setCurrentLogPage] = useState({});
+  const [currentLogPage, setCurrentLogPage] = useState("");
 
   const tray = useRef();
   //
@@ -21,8 +28,8 @@ function Log(params) {
     // check what is requested based on click
     // set the currentPage to the correct obj.
     pageRequested === "log-private"
-      ? setCurrentLogPage(privateInfo)
-      : setCurrentLogPage(classInfo);
+      ? setCurrentLogPage("private")
+      : setCurrentLogPage("class");
     //
     if (tray.current.classList.contains("hidden")) {
       tray.current.classList.remove("hidden");
@@ -55,8 +62,7 @@ function Log(params) {
         </div>
         {/* The expandable section of the div.. The contents depends on the click */}
         <div ref={tray} className="hidden ">
-          <h2>{currentLogPage.name}</h2>
-          <p>{currentLogPage.info}</p>
+          {LogPage[`${currentLogPage}`]}
         </div>
       </div>
     </div>
