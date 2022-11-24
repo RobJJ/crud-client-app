@@ -39,23 +39,23 @@ function Log(params) {
   };
   //
   return (
-    <div className="w-2/3 h-2/3 bg-green-100 p-2">
+    <div className="w-full bg-orange-200 p-2">
       {/* Parent container that expands onClick. No height set */}
-      <div className="w-full bg-green-200 flex flex-col">
+      <div className="w-full  flex flex-col">
         {/* Top level bar display to handle clicks and guidance */}
         <div className="w-full h-12 flex text-center items-center gap-2">
           <div
             data-tag="log-private"
             onClick={handleLogClick}
-            className="w-1/3 bg-green-500"
+            className="w-1/3 bg-slate-200"
           >
             PRIVATE
           </div>
-          <div className="w-1/3 bg-green-500">LOG</div>
+          <div className="w-1/3 bg-slate-200">LOG</div>
           <div
             data-tag="log-class"
             onClick={handleLogClick}
-            className="w-1/3 bg-green-500"
+            className="w-1/3 bg-slate-200"
           >
             CLASS
           </div>
