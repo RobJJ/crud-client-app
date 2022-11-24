@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { v4 as uuidv4 } from "uuid";
 //
 const clientTestArray = [
   { name: "Rob Johnsen", id: "1" },
@@ -12,7 +13,14 @@ const clientTestArray = [
 ];
 const privateClientDebitTemplate = {
   clientToDebit: "",
-  debitInfo: {},
+  // This is what a debit obj should look like
+  debitInfo: {
+    amount: "",
+    date: "",
+    id: "",
+    note: "",
+    sessions: "",
+  },
 };
 //
 function LogPrivate(params) {
