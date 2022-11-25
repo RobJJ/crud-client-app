@@ -38,9 +38,9 @@ function LogPrivate(params) {
     );
 
     // Find id of client that is chosen
-    console.log("e target: ", e.target);
-    console.log("e target value: ", e.target.value);
-    console.log("client name: ", findClient.name);
+    // console.log("e target: ", e.target);
+    // console.log("e target value: ", e.target.value);
+    // console.log("client name: ", findClient.name);
     // // Return the object of that client using the id : if needed
     // // At the momement this is not needed.....
     setPrivateClientCredit({
@@ -52,7 +52,7 @@ function LogPrivate(params) {
   //
   const handlePrivateLogSubmit = (e) => {
     e.preventDefault();
-    console.log(privateClientCredit);
+    // console.log(privateClientCredit);
     setPrivateClientCredit({
       ...privateClientCredit,
       creditInfo: { ...privateClientCredit.creditInfo, id: uuidv4() },
