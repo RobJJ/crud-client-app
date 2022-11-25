@@ -117,20 +117,21 @@ function ClientList(params) {
   };
   //
   return (
-    <div className="bg-green-200 h-full flex flex-col overflow-auto">
-      <div className="p-2 flex justify-center">
+    <div className="bg-green-200 h-full flex flex-col overflow-auto p-2 gap-2">
+      <div className=" flex justify-center bg-orange-300 p-5">
         <input
           type="search"
           placeholder="Search for client..."
-          className="w-3/4 rounded-xl p-2"
+          className="w-3/4 rounded-xl p-2 text-center text-lg"
           value={searchedLetters}
           onChange={(e) => {
             setSearchedLetters(e.target.value);
           }}
         />
       </div>
+      {/* THE FLIPPED CARD -- NOT NEEDED IN THIS POSITION ANYMORE */}
       {!flipState && (
-        <section className="bg-green-300 overflow-auto h-full w-full flex flex-col gap-2 p-2 ">
+        <section className="bg-orange-300 overflow-auto h-full w-full flex flex-col gap-2 p-5 items-center">
           {clients.map((client) => (
             <ClientListItem
               itemObj={client}
