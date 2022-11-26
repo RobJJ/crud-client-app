@@ -1,9 +1,12 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
-import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { Routes, Route } from "react-router-dom";
+//
 // Components
+
 import HomePage from "./Pages/Home-page";
 import LandingPage from "./Pages/Landing-page";
+import HomeHome from "./SubPages/Home-home";
 //
 
 function App() {
@@ -11,7 +14,9 @@ function App() {
     <div className="w-screen h-screen bg-blue-100 flex">
       <Routes>
         <Route path="/" element={<LandingPage />}></Route>
-        <Route path="/home" element={<HomePage />}></Route>
+        <Route path="/home" element={<HomePage />}>
+          <Route index element={<HomeHome />} />
+        </Route>
       </Routes>
     </div>
   );
