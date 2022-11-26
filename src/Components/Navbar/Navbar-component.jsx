@@ -8,7 +8,9 @@ function Navbar(params) {
       <Link to="/" className="bg-blue-100 underline text-2xl">
         Sign Out
       </Link>
-      <div className="bg-blue-100 underline text-2xl ">Home</div>
+      <Link to="/home" className="bg-blue-100 underline text-2xl ">
+        Home
+      </Link>
       <div className="bg-blue-100 underline text-2xl justify-self-end mr-5">
         User name
       </div>
