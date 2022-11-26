@@ -1,9 +1,7 @@
 import React from "react";
+import ReactDOM from "react-dom/client";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
 // Components
-import ReceiptList from "./Components/Receipts/Receipt-parent-component";
-import AddClient from "./Components/QuickBar/AddClient/AddClient-component";
-import Navigation from "./Components/Navigation/Navigation-parent-component";
-import Log from "./Components/QuickBar/Log/Log-parent-component";
 import HomePage from "./Pages/Home-page";
 //
 

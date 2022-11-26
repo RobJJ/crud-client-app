@@ -3,34 +3,27 @@ import React, { useRef } from "react";
 //
 function AddClient(params) {
   //
-  const addClientForm = useRef();
+  // const addClientForm = useRef();
   //
-  const handleClientExpand = () => {
-    if (addClientForm.current.classList.contains("hidden")) {
-      addClientForm.current.classList.remove("hidden");
-    } else {
-      addClientForm.current.classList.add("hidden");
-    }
-  };
+  // const handleClientExpand = () => {
+  //   if (addClientForm.current.classList.contains("hidden")) {
+  //     addClientForm.current.classList.remove("hidden");
+  //   } else {
+  //     addClientForm.current.classList.add("hidden");
+  //   }
+  // };
   //
   const handleClientFormSubmit = (e) => {
     e.preventDefault();
-    addClientForm.current.classList.add("hidden");
+    // addClientForm.current.classList.add("hidden");
   };
   //
   return (
     <div className=" flex flex-col">
-      <div className="w-full bg-red-200 flex flex-col">
-        <h2
-          onClick={handleClientExpand}
-          className="w-full p-2 text-center underline font-bold"
-        >
-          ADD CLIENT
-        </h2>
+      <div className="w-full bg-red-200 flex flex-col p-2">
         <form
           onSubmit={handleClientFormSubmit}
-          ref={addClientForm}
-          className="flex flex-col gap-2 text-center hidden"
+          className="flex flex-col gap-2 text-center"
         >
           <div>
             <input
@@ -73,3 +66,10 @@ function AddClient(params) {
 }
 
 export default AddClient;
+
+// <h2
+//   onClick={handleClientExpand}
+//   className="w-full p-2 text-center underline font-bold"
+// >
+//   ADD CLIENT
+// </h2>;
