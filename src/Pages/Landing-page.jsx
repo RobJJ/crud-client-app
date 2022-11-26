@@ -1,4 +1,6 @@
 import { Link } from "react-router-dom";
+import SignIn from "../Components/SignIn/SignIn-component";
+import Welcome from "../Components/Welcome/Welcome-component";
 
 function LandingPage(params) {
   //
@@ -7,12 +9,10 @@ function LandingPage(params) {
   };
   //
   return (
-    <div className="w-full h-full bg-blue-200 flex">
-      <div className="w-2/3 h-2/3">
-        <h2>Im the landing page and will be used for logging in etc</h2>
-        <Link type="button" to="/Home">
-          GO TO THE HOME PAGE
-        </Link>
+    <div className="w-full h-full bg-blue-200 flex justify-center items-center">
+      <div className="w-2/3 h-2/3 bg-pink-200">
+        <Welcome />
+        <SignIn />
       </div>
     </div>
   );
