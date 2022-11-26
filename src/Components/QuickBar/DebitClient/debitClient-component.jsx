@@ -23,7 +23,7 @@ const privateClientCreditTemplate = {
   },
 };
 //
-function LogPrivate(params) {
+function DebitClient(params) {
   //
   const [privateClientCredit, setPrivateClientCredit] = useState(
     privateClientCreditTemplate
@@ -132,7 +132,7 @@ function LogPrivate(params) {
   );
 }
 
-export default LogPrivate;
+export default DebitClient;
 
 //
 

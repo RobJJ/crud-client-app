@@ -129,9 +129,9 @@ function ClientList(params) {
           }}
         />
       </div>
-      {/* THE FLIPPED CARD -- NOT NEEDED IN THIS POSITION ANYMORE */}
+      {/* THE FLIPPED CARD SYSTEM -- NOT NEEDED IN THIS POSITION ANYMORE */}
       {!flipState && (
-        <section className="bg-orange-300 overflow-auto h-full w-full flex flex-col gap-2 p-5 items-center">
+        <section className="bg-orange-300 overflow-auto h-full w-full flex flex-col gap-2 p-5 mb-2 items-center">
           {clients.map((client) => (
             <ClientListItem
               itemObj={client}

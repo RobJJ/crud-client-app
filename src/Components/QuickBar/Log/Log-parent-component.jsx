@@ -1,7 +1,7 @@
 import React, { useRef, useState } from "react";
 // Component imports
 import LogClass from "./Log-class-component";
-import LogPrivate from "./Log-private-component";
+import LogPrivate from "../DebitClient/debitClient-component";
 //
 const privateInfo = {
   name: "private",
