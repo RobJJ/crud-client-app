@@ -7,7 +7,7 @@ import { Routes, Route } from "react-router-dom";
 import HomePage from "./Pages/Home-page";
 import LandingPage from "./Pages/Landing-page";
 import HomeHome from "./SubPages/Home-home";
-import Client from "./Components/Client/Client-component";
+import HomeClient from "./SubPages/Home-client";
 //
 
 function App() {
@@ -17,7 +17,7 @@ function App() {
         <Route path="/" element={<LandingPage />}></Route>
         <Route path="/home" element={<HomePage />}>
           <Route index element={<HomeHome />} />
-          <Route path="client/:clientId" element={<Client />} />
+          <Route path="client/:clientId" element={<HomeClient />} />
         </Route>
       </Routes>
     </div>
