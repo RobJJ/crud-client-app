@@ -1,11 +1,18 @@
 import React from "react";
+import { Link } from "react-router-dom";
 //
 function ClientNav(params) {
   return (
     <div className="flex w-full bg-orange-200 text-center p-2">
-      <div className="w-1/3 underline">Info</div>
-      <div className="w-1/3 underline">Receipts</div>
-      <div className="w-1/3 underline">Add</div>
+      <Link to="info" className="w-1/3 underline">
+        Info
+      </Link>
+      <Link to="receipts" className="w-1/3 underline">
+        Receipts
+      </Link>
+      <Link to="transaction" className="w-1/3 underline">
+        Transaction
+      </Link>
     </div>
   );
 }

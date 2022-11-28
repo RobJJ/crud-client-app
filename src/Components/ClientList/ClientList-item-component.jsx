@@ -6,10 +6,12 @@ import {
   FaGripLines,
   FaRegTrashAlt,
 } from "react-icons/fa";
+import { useGlobalContext } from "../../Context-Reducer/Context";
 //
 //
 
 function ClientListItem({ itemObj }) {
+  const { isClientBeingManaged, setIsClientBeingManaged } = useGlobalContext();
   const { name, uid } = itemObj;
   //
 
@@ -19,6 +21,7 @@ function ClientListItem({ itemObj }) {
       <Link
         to={`client/:${uid}`}
         className="text-lg w-1/3 bg-gray-300 text-center"
+        onClick={() => setIsClientBeingManaged(!isClientBeingManaged)}
       >
         {name}
       </Link>

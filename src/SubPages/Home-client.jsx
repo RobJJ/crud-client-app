@@ -1,12 +1,16 @@
 import React from "react";
-import ClientPage from "../Components/Client/Client-parent";
+import { Outlet } from "react-router-dom";
+import ClientNav from "../Components/Client/Client-Navbar-component";
+
 //
 
 function HomeClient(params) {
   //
   return (
-    <div className="w-full h-full">
-      <ClientPage />
+    <div className="w-full h-full bg-pink-100 flex flex-col gap-2 p-2">
+      <h2 className="bg-orange-200 p-2 text-center underline">Client Name</h2>
+      <ClientNav />
+      <Outlet />
     </div>
   );
 }
