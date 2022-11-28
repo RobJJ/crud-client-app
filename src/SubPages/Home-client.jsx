@@ -7,15 +7,15 @@ import ClientNav from "../Components/Client/Client-Navbar-component";
 function HomeClient(params) {
   //
   return (
-    <div className="w-full h-full bg-pink-100 flex flex-col gap-2 p-5 pt-10">
-      <div className="bg-orange-200 h-full w-full rounded-xl">
-        <div className="flex w-full justify-center bg-slate-400">
+    <div className="w-full h-full bg-pink-100 p-5 pt-10">
+      <div className="bg-orange-200 h-full w-full rounded-xl flex flex-col">
+        <div className="flex w-full justify-center ">
           <h2 className="bg-orange-300 text-center underline w-1/2 rounded-2xl font-bold text-xl tracking-wider p-2 relative bottom-6">
             Client Name
           </h2>
         </div>
         <ClientNav />
-        <div>
+        <div className="w-full h-full p-2">
           <Outlet />
         </div>
       </div>
