@@ -1,18 +1,40 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 //
 function ClientNav(params) {
   return (
     <div className="flex w-full bg-orange-200 text-center p-2">
-      <Link to="info" className="w-1/3 underline">
+      <NavLink
+        to=""
+        end
+        className={({ isActive }) =>
+          ["w-1/3 underline", isActive ? "bg-slate-400 text-white" : null]
+            .filter(Boolean)
+            .join(" ")
+        }
+      >
         Info
-      </Link>
-      <Link to="receipts" className="w-1/3 underline">
+      </NavLink>
+      <NavLink
+        to="receipts"
+        className={({ isActive }) =>
+          ["w-1/3 underline", isActive ? "bg-slate-400 text-white" : null]
+            .filter(Boolean)
+            .join(" ")
+        }
+      >
         Receipts
-      </Link>
-      <Link to="transaction" className="w-1/3 underline">
+      </NavLink>
+      <NavLink
+        to="transaction"
+        className={({ isActive }) =>
+          ["w-1/3 underline", isActive ? "bg-slate-400 text-white" : null]
+            .filter(Boolean)
+            .join(" ")
+        }
+      >
         Transaction
-      </Link>
+      </NavLink>
     </div>
   );
 }

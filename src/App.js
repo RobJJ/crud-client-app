@@ -22,7 +22,7 @@ function App() {
           <Route index element={<HomeHome />} />
           <Route path="client/:clientId" element={<HomeClient />}>
             <Route index element={<ClientInfo />} />
-            <Route index path="info" element={<ClientInfo />} />
+
             <Route path="receipts" element={<ClientReceipts />} />
             <Route path="transaction" element={<ClientTransaction />} />
           </Route>
