@@ -20,7 +20,7 @@ function Navbar(params) {
       {isClientBeingManaged && (
         <Link
           to="/home"
-          onClick={() => setIsClientBeingManaged(!isClientBeingManaged)}
+          onClick={() => setIsClientBeingManaged(false)}
           className="bg-blue-100 underline text-2xl flex items-center gap-2"
         >
           <FaHome />
