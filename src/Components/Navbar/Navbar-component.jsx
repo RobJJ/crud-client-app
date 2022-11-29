@@ -12,7 +12,7 @@ function Navbar(params) {
     <div className="bg-blue-300 grid grid-cols-3 gap-5 justify-items-stretch p-5">
       <Link
         to="/"
-        onClick={() => setIsClientBeingManaged(!isClientBeingManaged)}
+        onClick={() => setIsClientBeingManaged(false)}
         className="bg-blue-100 underline text-2xl "
       >
         Sign Out

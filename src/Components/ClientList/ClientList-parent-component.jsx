@@ -126,8 +126,8 @@ function ClientList(params) {
   // };
   //
   return (
-    <div className="bg-green-200 h-full flex flex-col overflow-auto p-2 gap-2">
-      <div className=" flex justify-center bg-orange-300 p-5">
+    <div className="bg-green-200 w-full h-full flex flex-col overflow-auto p-2 gap-2">
+      <section className=" flex justify-center bg-orange-300 p-5">
         <input
           type="search"
           placeholder="Search for client..."
@@ -137,7 +137,7 @@ function ClientList(params) {
             setSearchedLetters(e.target.value);
           }}
         />
-      </div>
+      </section>
 
       <section className="bg-orange-300 overflow-auto h-full w-full flex flex-col gap-2 p-5 mb-2 items-center">
         {clients.map((client) => (

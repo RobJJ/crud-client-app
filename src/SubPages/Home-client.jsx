@@ -7,15 +7,18 @@ import ClientNav from "../Components/Client/Client-Navbar-component";
 function HomeClient(params) {
   //
   return (
-    <div className="w-full h-full bg-pink-100 p-5 pt-10">
-      <div className="bg-orange-200 h-full w-full rounded-xl flex flex-col">
+    <div className="w-full h-full bg-pink-100 p-5 pt-10 flex flex-col overflow-auto">
+      <div className="bg-orange-200 h-full w-full rounded-xl flex flex-col ">
+        {/* header - client name offset */}
         <div className="flex w-full justify-center ">
           <h2 className="bg-orange-300 text-center underline w-1/2 rounded-2xl font-bold text-xl tracking-wider p-2 relative bottom-6">
             Client Name
           </h2>
         </div>
+        {/* client navbar - info,receipts,transaction */}
         <ClientNav />
-        <div className="w-full h-full p-2">
+        {/* rendered page for each nav header */}
+        <div className="flex w-full h-full p-2 overflow-auto">
           <Outlet />
         </div>
       </div>

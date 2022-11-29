@@ -15,20 +15,17 @@ import ClientTransaction from "./Components/Client/Client-Transaction-component"
 
 function App() {
   return (
-    <div className="w-screen h-screen bg-blue-100 flex">
-      <Routes>
-        <Route path="/" element={<LandingPage />}></Route>
-        <Route path="/home" element={<HomePage />}>
-          <Route index element={<HomeHome />} />
-          <Route path="client/:clientId" element={<HomeClient />}>
-            <Route index element={<ClientInfo />} />
-
-            <Route path="receipts" element={<ClientReceipts />} />
-            <Route path="transaction" element={<ClientTransaction />} />
-          </Route>
+    <Routes>
+      <Route path="/" element={<LandingPage />} />
+      <Route path="/home" element={<HomePage />}>
+        <Route index element={<HomeHome />} />
+        <Route path="client/:clientId" element={<HomeClient />}>
+          <Route index element={<ClientInfo />} />
+          <Route path="receipts" element={<ClientReceipts />} />
+          <Route path="transaction" element={<ClientTransaction />} />
         </Route>
-      </Routes>
-    </div>
+      </Route>
+    </Routes>
   );
 }
 

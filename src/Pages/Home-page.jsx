@@ -8,7 +8,7 @@ import Navbar from "../Components/Navbar/Navbar-component";
 
 function HomePage(params) {
   return (
-    <div className="w-full h-full bg-blue-200 flex flex-col">
+    <div className="w-screen h-screen bg-blue-200 flex flex-col">
       <Navbar />
       <Outlet />
     </div>

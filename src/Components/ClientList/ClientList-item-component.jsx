@@ -21,7 +21,7 @@ function ClientListItem({ itemObj }) {
       <Link
         to={`client/:${uid}`}
         className="text-lg w-1/3 bg-gray-300 text-center"
-        onClick={() => setIsClientBeingManaged(!isClientBeingManaged)}
+        onClick={() => setIsClientBeingManaged(true)}
       >
         {name}
       </Link>
