@@ -10,7 +10,7 @@ import UserDatabaseServices from "../Firebase/firebase-services";
 import reducer from "./Reducer";
 import { v4 as uuidv4 } from "uuid";
 import { onAuthStateChangedListener } from "../Firebase/firebase-auth";
-import { useNavigate } from "react-router-dom";
+
 //
 // Initial State for the reducer state
 // Lets try make this an empty object and then spread everything into it from user log
@@ -29,8 +29,6 @@ const AppProvider = ({ children }) => {
   const [state, dispatch] = useReducer(reducer, initialState);
 
   //
-  const [currentUser, setCurrentUser] = useState(null);
-  //
   //
   const hydrateUser = async (userObj) => {
     // client array: Array of objects. Obj has basicInfo for now
@@ -48,15 +46,14 @@ const AppProvider = ({ children }) => {
     //
     // const userBasicInfo = {};
     console.log("In Hydrate.. userOjb is :", Boolean(userObj));
+
     const userBasicInfoObj = await UserDatabaseServices.getUser(
       userObj.uid
     ).then((res) => {
-      console.log(res.data().userInfo);
-      // return { ...res.data().userInfo };
+      // console.log(res.data().userInfo);
+      return { ...res.data().userInfo };
     });
-    // userBasicInfo is an obj containing the user's basicInfo
-    // const userBasicInfo = { ...userDoc.data().userInfo };
-    // console.log(userBasicInfoObj);
+    dispatch({ type: "HYDATE_USER_BASIC_INFO", payload: userBasicInfoObj });
   };
   //
   useEffect(() => {
@@ -66,11 +63,10 @@ const AppProvider = ({ children }) => {
         // I made the callback async to allow the user to be populated fully.
         // It has made it slow though... the initial load of the page...
         // The trade off though, is that we can get all the info available
-        const res = await UserDatabaseServices.createUserDocFromAuth(user);
-        console.log("RESPONSE: ", res);
+        await UserDatabaseServices.createUserDocFromAuth(user);
         // hydrate the user when signing in
-        hydrateUser(user);
         console.log("user is true ????");
+        hydrateUser(user);
         // getAllUsersClients(user.uid);
       } else {
         console.log(
@@ -78,10 +74,9 @@ const AppProvider = ({ children }) => {
         );
       }
       // this shit runs when user logs in and logs out
-      console.log("Coming from Context", user);
+      // console.log("Coming from Context", user);
       // dispatch({ type: "HYDRATE_USER_STATE", payload: user });
       // setting currentUser.. This is not helpful
-      setCurrentUser(user);
     });
     return unsubscribe;
   }, []);
@@ -89,8 +84,7 @@ const AppProvider = ({ children }) => {
   return (
     <AppContext.Provider
       value={{
-        currentUser,
-        setCurrentUser,
+        ...state,
       }}
     >
       {children}
@@ -103,3 +97,7 @@ export const useGlobalContext = () => {
   return useContext(AppContext);
 };
 export { AppContext, AppProvider };
+
+//
+// Not really sure why the "user is true?? console log gets logged again".
+// But going to move on

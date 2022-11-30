@@ -14,11 +14,12 @@ const reducer = (state, action) => {
     };
   }
 
-  //   if (action.type === "HYDRATE_USER_STATE") {
-  //     return {
-  //       ...action.payload,
-  //     };
-  //   }
+  if (action.type === "HYDATE_USER_BASIC_INFO") {
+    return {
+      ...state,
+      userBasicInfo: { ...action.payload },
+    };
+  }
   //
   return state;
 };

@@ -10,7 +10,7 @@ function Navbar(params) {
   //
   const navigate = useNavigate();
   //
-  const { currentUser } = useGlobalContext();
+  const { userBasicInfo } = useGlobalContext();
   //
   // This is a duplicated function for ease sake
   const handleSignOut = async () => {
@@ -35,7 +35,7 @@ function Navbar(params) {
       </Link>
 
       <div className="bg-blue-100 underline text-2xl mr-5 col-start-3 col-end-4">
-        {currentUser ? `${currentUser.displayName}` : "Error"}
+        {userBasicInfo ? `${userBasicInfo.displayName}` : "Loading spinner"}
       </div>
     </div>
   );
