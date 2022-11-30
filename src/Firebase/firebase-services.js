@@ -21,6 +21,8 @@ class UserDatabaseServices {
     const userDocRef = doc(db, "users", userAuth.uid);
     //
     const userSnapShot = await getDoc(userDocRef);
+    // returns the object of user
+    // console.log(userSnapShot.data());
     //
     // Does the user exists? If not lets create one for DB
     if (!userSnapShot.exists()) {

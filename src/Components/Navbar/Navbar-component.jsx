@@ -10,8 +10,7 @@ function Navbar(params) {
   //
   const navigate = useNavigate();
   //
-  const { isClientBeingManaged, setIsClientBeingManaged, currentUser } =
-    useGlobalContext();
+  const { currentUser } = useGlobalContext();
   //
   // This is a duplicated function for ease sake
   const handleSignOut = async () => {
@@ -25,16 +24,16 @@ function Navbar(params) {
       <Link onClick={handleSignOut} className="bg-blue-100 underline text-2xl ">
         Sign Out
       </Link>
-      {isClientBeingManaged && (
-        <button
-          to="/home"
-          onClick={() => setIsClientBeingManaged(false)}
-          className="bg-blue-100 underline text-2xl flex items-center gap-2"
-        >
-          <FaHome />
-          <div>Home</div>
-        </button>
-      )}
+
+      <Link
+        to="/home"
+        // onClick={() => setIsClientBeingManaged(false)}
+        className="bg-blue-100 underline text-2xl flex items-center gap-2"
+      >
+        <FaHome />
+        <div>Home</div>
+      </Link>
+
       <div className="bg-blue-100 underline text-2xl mr-5 col-start-3 col-end-4">
         {currentUser ? `${currentUser.displayName}` : "Error"}
       </div>

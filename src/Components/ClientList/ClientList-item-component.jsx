@@ -11,7 +11,6 @@ import { useGlobalContext } from "../../Context-Reducer/Context";
 //
 
 function ClientListItem({ itemObj }) {
-  const { isClientBeingManaged, setIsClientBeingManaged } = useGlobalContext();
   const { name, uid } = itemObj;
   //
 
@@ -21,7 +20,6 @@ function ClientListItem({ itemObj }) {
       <Link
         to={`client/:${uid}`}
         className="text-lg w-1/3 bg-gray-300 text-center"
-        onClick={() => setIsClientBeingManaged(true)}
       >
         {name}
       </Link>

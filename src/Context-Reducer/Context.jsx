@@ -11,7 +11,6 @@ const AppContext = React.createContext();
 //
 const AppProvider = ({ children }) => {
   //
-  const [isClientBeingManaged, setIsClientBeingManaged] = useState(false);
   const [currentUser, setCurrentUser] = useState(null);
   //
   useEffect(() => {
@@ -32,8 +31,6 @@ const AppProvider = ({ children }) => {
   return (
     <AppContext.Provider
       value={{
-        isClientBeingManaged,
-        setIsClientBeingManaged,
         currentUser,
         setCurrentUser,
       }}
