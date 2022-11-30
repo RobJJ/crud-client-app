@@ -3,9 +3,6 @@ import Welcome from "../Components/Welcome/Welcome-component";
 
 function LandingPage(params) {
   //
-  const handleRedirect = () => {
-    console.log("Working so far!");
-  };
   //
   return (
     <div className="w-screen h-screen bg-blue-200 flex justify-center items-center">

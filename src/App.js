@@ -1,6 +1,6 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
-import { Routes, Route } from "react-router-dom";
+import { Routes, Route, BrowserRouter } from "react-router-dom";
 //
 // Components
 
@@ -11,18 +11,21 @@ import HomeClient from "./SubPages/Home-client";
 import ClientInfo from "./Components/Client/Client-Info-component";
 import ClientReceipts from "./Components/Client/Client-Receipts-component";
 import ClientTransaction from "./Components/Client/Client-Transaction-component";
+import ProtectedRoute from "./ProtectedRoute/ProtectedRoute-route";
 //
 
 function App() {
   return (
     <Routes>
-      <Route path="/" element={<LandingPage />} />
-      <Route path="/home" element={<HomePage />}>
-        <Route index element={<HomeHome />} />
-        <Route path="client/:clientId" element={<HomeClient />}>
-          <Route index element={<ClientInfo />} />
-          <Route path="receipts" element={<ClientReceipts />} />
-          <Route path="transaction" element={<ClientTransaction />} />
+      <Route path="/login" element={<LandingPage />} />
+      <Route path="/" element={<ProtectedRoute />}>
+        <Route path="/home" element={<HomePage />}>
+          <Route index element={<HomeHome />} />
+          <Route path="client/:clientId" element={<HomeClient />}>
+            <Route index element={<ClientInfo />} />
+            <Route path="receipts" element={<ClientReceipts />} />
+            <Route path="transaction" element={<ClientTransaction />} />
+          </Route>
         </Route>
       </Route>
     </Routes>
