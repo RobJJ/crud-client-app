@@ -18,16 +18,16 @@ function App() {
   return (
     <Routes>
       <Route path="/login" element={<LandingPage />} />
-      <Route path="/" element={<ProtectedRoute />}>
-        <Route path="/home" element={<HomePage />}>
-          <Route index element={<HomeHome />} />
-          <Route path="client/:clientId" element={<HomeClient />}>
-            <Route index element={<ClientInfo />} />
-            <Route path="receipts" element={<ClientReceipts />} />
-            <Route path="transaction" element={<ClientTransaction />} />
-          </Route>
+      {/*<Route path="/" element={<ProtectedRoute />}>*/}
+      <Route path="/home" element={<HomePage />}>
+        <Route index element={<HomeHome />} />
+        <Route path="client/:clientId" element={<HomeClient />}>
+          <Route index element={<ClientInfo />} />
+          <Route path="receipts" element={<ClientReceipts />} />
+          <Route path="transaction" element={<ClientTransaction />} />
         </Route>
       </Route>
+      {/*</Route>*/}
     </Routes>
   );
 }
@@ -35,4 +35,4 @@ function App() {
 export default App;
 
 // Use the 'exact' param for precise matching for routes
-//
+// Have disabled the protect route for development

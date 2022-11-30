@@ -14,7 +14,21 @@ import {
 //
 //
 class UserDatabaseServices {
-  // ************************
+  //
+  // getUserBasicIfno = (uid) => {};
+  //
+  getUser = (uid) => {
+    const userDoc = doc(db, "users", uid);
+    return getDoc(userDoc);
+  };
+  //
+  // Returns promise of UserClientsCollection
+  getAllUsersClients = (userUID) => {
+    const userDocRef = doc(db, "users", userUID);
+    const userClientsCollectionRef = collection(userDocRef, "clients");
+    return getDocs(userClientsCollectionRef);
+  };
+  //
   // Creating User Based methods here,, should seperate this into its own class ... try here first. Do they share any info? besides the db...
   createUserDocFromAuth = async (userAuth) => {
     // doc() gets the doc back
@@ -27,7 +41,8 @@ class UserDatabaseServices {
     // Does the user exists? If not lets create one for DB
     if (!userSnapShot.exists()) {
       const { displayName, email } = userAuth;
-      const createdAt = new Date();
+      const createdAt = new Date().toISOString().slice(0, 10);
+      // const createdAt = new Date();
       // Create this object to contain the basic info, which in turn seperates it from the clients object. Singular field vs spread out
       const userInfo = {
         displayName,

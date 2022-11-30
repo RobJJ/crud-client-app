@@ -141,7 +141,7 @@ function ClientList(params) {
 
       <section className="bg-orange-300 overflow-auto h-full w-full flex flex-col gap-2 p-5 mb-2 items-center">
         {clients.map((client) => (
-          <ClientListItem itemObj={client} />
+          <ClientListItem key={client.uid} itemObj={client} />
         ))}
       </section>
     </div>
