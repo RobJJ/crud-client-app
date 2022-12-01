@@ -1,55 +1,67 @@
 import React, { useRef } from "react";
+import { useGlobalContext } from "../../../Context-Reducer/Context";
 //
-//
+// Lets first get this working, and then refactor
 function AddClient(params) {
   //
-  // const addClientForm = useRef();
+  // newClient is an object with all the client properties
+  const { newClient, setNewClient, submitNewClient } = useGlobalContext();
   //
-  // const handleClientExpand = () => {
-  //   if (addClientForm.current.classList.contains("hidden")) {
-  //     addClientForm.current.classList.remove("hidden");
-  //   } else {
-  //     addClientForm.current.classList.add("hidden");
-  //   }
-  // };
-  //
-  const handleClientFormSubmit = (e) => {
-    e.preventDefault();
-    // addClientForm.current.classList.add("hidden");
+  const handleInputChange = (e) => {
+    const { name, value } = e.target;
+    // Dynamically looks for name and value pairing from input.
+    // This methods reduces clutter in the form
+    setNewClient({
+      ...newClient,
+      [name]: value,
+    });
   };
   //
   return (
     <div className=" flex flex-col">
       <div className="w-full bg-red-200 flex flex-col p-2">
         <form
-          onSubmit={handleClientFormSubmit}
+          onSubmit={submitNewClient}
           className="flex flex-col gap-2 text-center"
         >
           <div>
             <input
+              required
               type="text"
+              name="name"
               placeholder="Name"
+              value={newClient.name}
+              onChange={handleInputChange}
               className="w-2/3 rounded-xl p-2 text-center"
             />
           </div>
           <div>
             <input
               type="text"
-              placeholder="Number"
+              name="contact"
+              placeholder="Contact"
+              value={newClient.contact}
+              onChange={handleInputChange}
               className="w-2/3 rounded-xl p-2 text-center"
             />
           </div>
           <div>
             <input
-              type="text"
+              type="email"
+              name="email"
               placeholder="Email"
+              value={newClient.email}
+              onChange={handleInputChange}
               className="w-2/3 rounded-xl p-2 text-center"
             />
           </div>
           <div>
             <textarea
               type="text"
+              name="notes"
               placeholder="Initial Note"
+              value={newClient.notes}
+              onChange={handleInputChange}
               className="w-2/3 rounded-xl p-2 text-center resize-none"
             />
           </div>

@@ -11,12 +11,23 @@ import {
   deleteDoc,
   doc,
 } from "firebase/firestore";
+import { uuidv4 } from "@firebase/util";
 //
 //
 class UserDatabaseServices {
   //
-  // getUserBasicIfno = (uid) => {};
   //
+  // I want this to target the correct user, and then add a client to it. IF the clients collection doesnt exist - create it!
+  addClientToUser = async (userUID, newClient) => {
+    // First: Get the docRef for the current user
+    const userDocRef = doc(db, "users", userUID);
+    // Second: Get the collectionRef for the clients of current user
+    const userClientsCollectionRef = collection(userDocRef, "clients");
+    // Third: Add a document to that collection - the document is the unique client and the data is the object passed in.
+    return addDoc(userClientsCollectionRef, newClient);
+  };
+  //
+  // Gets the user document from DB
   getUser = (uid) => {
     const userDoc = doc(db, "users", uid);
     return getDoc(userDoc);

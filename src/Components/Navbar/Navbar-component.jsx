@@ -10,13 +10,14 @@ function Navbar(params) {
   //
   const navigate = useNavigate();
   //
-  const { userBasicInfo } = useGlobalContext();
+  const { userInfo } = useGlobalContext();
   //
   // This is a duplicated function for ease sake
   const handleSignOut = async () => {
     // Sign out the user from firestore
     await signOutUser().then(console.log("User logged out"));
-    navigate("/");
+    // changed to from "/" to "/login" for testing purposes
+    navigate("/login");
   };
   //
   return (
@@ -35,7 +36,7 @@ function Navbar(params) {
       </Link>
 
       <div className="bg-blue-100 underline text-2xl mr-5 col-start-3 col-end-4">
-        {userBasicInfo ? `${userBasicInfo.displayName}` : "Loading spinner"}
+        {userInfo.displayName ? `${userInfo.displayName}` : "Loading spinner"}
       </div>
     </div>
   );

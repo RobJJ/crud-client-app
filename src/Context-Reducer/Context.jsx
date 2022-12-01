@@ -16,10 +16,22 @@ import { onAuthStateChangedListener } from "../Firebase/firebase-auth";
 // Lets try make this an empty object and then spread everything into it from user log
 const initialState = {
   // client array: Array of objects. Obj has basicInfo for now
-  // clients: [],'
+  clients: [],
   // basicInfo of current user
-  // basicInfo: {}
+  userInfo: {},
   // could add - finances here for later
+  // add uniqueClients count?
+};
+const newClientTemplate = {
+  name: "",
+  email: "",
+  contact: "",
+  balance: 0,
+  debits: [],
+  credits: [],
+  notes: "",
+  joined: "",
+  uid: "",
 };
 //
 const AppContext = React.createContext();
@@ -27,33 +39,53 @@ const AppContext = React.createContext();
 //
 const AppProvider = ({ children }) => {
   const [state, dispatch] = useReducer(reducer, initialState);
-
+  const [newClient, setNewClient] = useState(newClientTemplate);
   //
   //
-  const hydrateUser = async (userObj) => {
-    // client array: Array of objects. Obj has basicInfo for now
-    // clients: [],'
-    // basicInfo of current user
-    // basicInfo: {}
-    // could add - finances here for later
+  const submitNewClient = (e) => {
+    // This function will be called from a form element
+    e.preventDefault();
     //
-    // Get basic Info in state
-
-    // res: contains the user clients collection
-    // const res = await UserDatabaseServices.getAllUsersClients(userObj.uid);
-    // res.docs returns the array of clients
-    // console.log(res.docs);
-    //
-    // const userBasicInfo = {};
-    console.log("In Hydrate.. userOjb is :", Boolean(userObj));
-
+    console.log("submitNewClient called: ");
+    const userID = state.userInfo.userID;
+    const clientData = {
+      ...newClient,
+      uid: uuidv4(),
+      joined: new Date().toISOString().slice(0, 10),
+    };
+    // Update DB
+    UserDatabaseServices.addClientToUser(userID, clientData);
+    // Update STATE
+    dispatch({ type: "SUBMIT_NEW_CLIENT_TO_USER", payload: clientData });
+    // reset newClient to template
+    setNewClient(newClientTemplate);
+  };
+  //
+  // This should be hydrateState... this function runs everytime the user has refreshed the page of navigated... so why not use it to hydrate the local state
+  const hydrateState = async (userObj) => {
+    // console.log("In Hydrate.. userOjb is :", Boolean(userObj));
+    // Populate an object with users basic Info -> put in state
     const userBasicInfoObj = await UserDatabaseServices.getUser(
       userObj.uid
     ).then((res) => {
       // console.log(res.data().userInfo);
-      return { ...res.data().userInfo };
+      return { ...res.data().userInfo, userID: userObj.uid };
     });
+    // Get the collection of userClients
+    // If empty, set userClients arr to empty... else
+    // Map over the collection and spread docs into an array
+    //
+    const userClientsDocs = await UserDatabaseServices.getAllUsersClients(
+      userObj.uid
+    );
+    // Created array of objects
+
+    const userClients = userClientsDocs.docs.map((doc) => ({
+      ...doc.data(),
+    }));
+
     dispatch({ type: "HYDATE_USER_BASIC_INFO", payload: userBasicInfoObj });
+    dispatch({ type: "HYDRATE_USER_CLIENTS", payload: userClients });
   };
   //
   useEffect(() => {
@@ -65,9 +97,8 @@ const AppProvider = ({ children }) => {
         // The trade off though, is that we can get all the info available
         await UserDatabaseServices.createUserDocFromAuth(user);
         // hydrate the user when signing in
-        console.log("user is true ????");
-        hydrateUser(user);
-        // getAllUsersClients(user.uid);
+        console.log("user is true ???? UseEffect has run");
+        hydrateState(user);
       } else {
         console.log(
           "User on login not true?? dafuk... i will wipe out state here??"
@@ -85,6 +116,9 @@ const AppProvider = ({ children }) => {
     <AppContext.Provider
       value={{
         ...state,
+        newClient,
+        setNewClient,
+        submitNewClient,
       }}
     >
       {children}
