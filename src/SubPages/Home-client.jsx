@@ -1,10 +1,13 @@
 import React from "react";
-import { Outlet } from "react-router-dom";
+import { Outlet, useLocation } from "react-router-dom";
 import ClientNav from "../Components/Client/Client-Navbar-component";
 
 //
 
-function HomeClient(params) {
+function HomeClient() {
+  // const location = useLocation();
+  // const passedProp = location.state.name;
+  // console.log(passedProp);
   //
   return (
     <div className="w-full h-full bg-pink-100 p-5 pt-10 flex flex-col overflow-auto">

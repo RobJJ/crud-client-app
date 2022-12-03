@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import { useGlobalContext } from "../../Context-Reducer/Context";
 import ClientListItem from "./ClientList-item-component";
 //
 //
@@ -104,19 +105,19 @@ const testListClients = [
 ];
 
 function ClientList(params) {
-  const [clients, setClients] = useState(testListClients);
+  // const [clients, setClients] = useState(testListClients);
+  const [filteredClients, setFilteredClients] = useState([]);
   const [searchedLetters, setSearchedLetters] = useState("");
-  const [flipState, setFlipState] = useState(false);
-  const [flipClient, setFlipClient] = useState({});
+  const { clients } = useGlobalContext();
   //
   // Filter the List of Client based on searched input letters
   useEffect(() => {
     // Filter the raw list of clients... set the state
-    const filter = testListClients.filter((client) =>
+    const filter = clients.filter((client) =>
       client.name.toLowerCase().includes(searchedLetters.toLowerCase())
     );
-    setClients(filter);
-  }, [searchedLetters]);
+    setFilteredClients(filter);
+  }, [searchedLetters, clients]);
   //
   // This is the flip function you pass down to the child element card
   // const handleTheFlip = (client) => {
@@ -140,7 +141,7 @@ function ClientList(params) {
       </section>
 
       <section className="bg-orange-300 overflow-auto h-full w-full flex flex-col gap-2 p-5 mb-2 items-center">
-        {clients.map((client) => (
+        {filteredClients.map((client) => (
           <ClientListItem key={client.uid} itemObj={client} />
         ))}
       </section>

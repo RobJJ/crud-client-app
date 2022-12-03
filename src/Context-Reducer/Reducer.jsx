@@ -7,7 +7,21 @@ const reducer = (state, action) => {
     };
   }
   //
+  //
+  if (action.type === "DELETE_CLIENT_FROM_USER") {
+    // Create new array of client, excluding unwanted client
+    const updatedClients = state.clients.filter(
+      (client) => client.uid !== action.payload
+    );
+    return {
+      ...state,
+      clients: updatedClients,
+    };
+  }
+  //
+  //
   if (action.type === "HYDRATE_USER_CLIENTS") {
+    //
     return {
       ...state,
       clients: [...action.payload],

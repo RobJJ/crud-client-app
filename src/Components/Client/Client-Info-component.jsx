@@ -1,6 +1,7 @@
 import React from "react";
 //
 function ClientInfo(params) {
+  // const {} =
   return (
     <div className="bg-red-200 w-full h-full flex flex-col p-2 gap-2">
       {/* basic info */}
