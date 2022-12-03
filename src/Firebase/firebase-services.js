@@ -23,6 +23,12 @@ class UserDatabaseServices {
     return getDocs(userClientsCollectionRef);
   };
   //
+  getSpecificClientFromUser = (userID, clientID) => {
+    const userDocRef = doc(db, "users", userID);
+    const clientDocRef = doc(userDocRef, "clients", clientID);
+    return getDoc(clientDocRef);
+  };
+  //
   //
   // Target USER. Add client to "clients" collection. If there is no collection yet for that user... create it.
   addClientToUser = async (userUID, newClient) => {
@@ -50,11 +56,14 @@ class UserDatabaseServices {
     return getDoc(userDoc);
   };
   //
-  // Returns promise of UserClientsCollection
-  getAllUsersClients = (userUID) => {
+  //
+  updateClientOfUser = (userUID, clientID, newData) => {
+    // Get the current user ref
     const userDocRef = doc(db, "users", userUID);
-    const userClientsCollectionRef = collection(userDocRef, "clients");
-    return getDocs(userClientsCollectionRef);
+    // Get the current user-client ref
+    const clientDocRef = doc(userDocRef, "clients", clientID);
+    // Update the user-client will the new data
+    return updateDoc(clientDocRef, newData);
   };
   //
   // Creating User Based methods here,, should seperate this into its own class ... try here first. Do they share any info? besides the db...

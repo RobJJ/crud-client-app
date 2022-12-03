@@ -33,6 +33,14 @@ const newClientTemplate = {
   joined: "",
   uid: "",
 };
+const debitClientTemplate = {
+  name: "",
+  date: "",
+  amount: "",
+  sessions: "",
+  note: "",
+  uid: "",
+};
 //
 const AppContext = React.createContext();
 //
@@ -40,6 +48,8 @@ const AppContext = React.createContext();
 const AppProvider = ({ children }) => {
   const [state, dispatch] = useReducer(reducer, initialState);
   const [newClient, setNewClient] = useState(newClientTemplate);
+  const [debitClient, setDebitClient] = useState(debitClientTemplate);
+
   //
   //
   const submitNewClient = (e) => {
@@ -50,20 +60,20 @@ const AppProvider = ({ children }) => {
     const userID = state.userInfo.userID;
     const clientData = {
       ...newClient,
-      uid: uuidv4(),
+      // uid: uuidv4(),
       joined: new Date().toISOString().slice(0, 10),
     };
     // Update DB
     UserDatabaseServices.addClientToUser(userID, clientData);
+    // We are now going to add the client ID to the object
+
     // Update STATE
     dispatch({ type: "SUBMIT_NEW_CLIENT_TO_USER", payload: clientData });
     // reset newClient to template
     setNewClient(newClientTemplate);
   };
-  //
-  const deleteClient = async (clientUID) => {
-    // NOTE: UID is our created ID. ID is firebase autoID
-    // gets all the docs of this collection
+  // This gets the clients unique ID from the Database
+  const getClientId = async (userId, clientUID) => {
     const arrayOfUsers = await UserDatabaseServices.getAllUsersClients(
       state.userInfo.userID
     );
@@ -74,10 +84,53 @@ const AppProvider = ({ children }) => {
     const clientID = arrayOfUsers.docs.find(
       (client) => client.data().uid === clientUID
     ).id;
-    UserDatabaseServices.deleteClientFromUser(userID, clientID);
-    dispatch({ type: "DELETE_CLIENT_FROM_USER", payload: clientUID });
+    return clientID;
   };
   //
+  const deleteClient = async (clientUID) => {
+    dispatch({ type: "DELETE_CLIENT_FROM_USER", payload: clientUID });
+
+    const userID = state.userInfo.userID;
+
+    const clientID = await getClientId(userID, clientUID);
+    UserDatabaseServices.deleteClientFromUser(userID, clientID);
+  };
+  //
+  const handleDebit = async (e) => {
+    e.preventDefault();
+    // Gaurd clause to ensure user selects a client
+    if (!debitClient.name) return;
+    console.log("Working! And the debit looks like this: ", debitClient);
+    // Updating debit note with uuid. This obj used for db write
+    const newDebitData = { ...debitClient, uid: uuidv4() };
+    const userID = state.userInfo.userID;
+    const clientUID = state.clients.find(
+      (client) => client.name === debitClient.name
+    ).uid;
+    //
+    dispatch({
+      type: "DEBIT_CLIENT_OF_USER",
+      payload: { newDebitData, clientUID },
+    });
+    //
+    const clientID = await getClientId(userID, clientUID);
+    const oldClientData = await UserDatabaseServices.getSpecificClientFromUser(
+      userID,
+      clientID
+    );
+    // console.log(oldClientData.data());
+    const newClientDataWithDebit = {
+      ...oldClientData.data(),
+      debits: [...oldClientData.data().debits, { ...newDebitData }],
+    };
+    console.log(newClientDataWithDebit);
+    // Updated the client with this debit note
+    await UserDatabaseServices.updateClientOfUser(
+      userID,
+      clientID,
+      newClientDataWithDebit
+    );
+  };
   // This should be hydrateState... this function runs everytime the user has refreshed the page or navigated... so why not use it to hydrate the local state
   const hydrateState = async (userObj) => {
     // console.log("In Hydrate.. userOjb is :", Boolean(userObj));
@@ -137,6 +190,9 @@ const AppProvider = ({ children }) => {
         setNewClient,
         submitNewClient,
         deleteClient,
+        debitClient,
+        setDebitClient,
+        handleDebit,
       }}
     >
       {children}
