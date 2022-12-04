@@ -1,5 +1,14 @@
 const reducer = (state, action) => {
   //
+  // if (action.type === "SET_FOCUSED_CLIENT_OF_USER") {
+  //   return {
+  //     ...state,
+  //     focusedClientUID: action.payload.uid,
+  //     focusedClient: action.payload.itemObj,
+  //   };
+  // }
+  //
+  //
   if (action.type === "SUBMIT_NEW_CLIENT_TO_USER") {
     return {
       ...state,

@@ -1,4 +1,5 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
+import { useGlobalContext } from "../../Context-Reducer/Context";
 //
 import ReceiptItem from "./Client-Receipts-item-component";
 //
@@ -97,6 +98,19 @@ const receiptTestArr = [
 //
 //
 function ClientReceipts(params) {
+  //
+  const { focusedClient } = useGlobalContext();
+  const { debits, credits } = focusedClient;
+  const [sortedReceipts, setSortedReceipts] = useState([]);
+  //
+  useEffect(() => {
+    const totalReceipts = [...debits, ...credits];
+    const sorted = totalReceipts.sort(
+      (objA, objB) => Number(objB.date) - Number(objA.date)
+    );
+    setSortedReceipts([...sorted]);
+  }, []);
+  //
   return (
     <div className="bg-red-200 w-full h-full flex flex-col gap-2 overflow-auto">
       {/* display headers for columns */}
@@ -111,8 +125,8 @@ function ClientReceipts(params) {
 
       <section className="bg-red-300 w-full h-full flex p-2 overflow-auto">
         <div className=" bg-green-200 flex flex-col gap-2 w-full h-full overflow-auto p-2">
-          {receiptTestArr.map((item) => {
-            return <ReceiptItem key={item.id} receipt={item} />;
+          {sortedReceipts.map((item) => {
+            return <ReceiptItem key={item.uid} receipt={item} />;
           })}
         </div>
       </section>

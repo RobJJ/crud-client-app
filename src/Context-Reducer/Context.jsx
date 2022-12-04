@@ -1,10 +1,4 @@
-import React, {
-  useContext,
-  useState,
-  useRef,
-  useEffect,
-  useReducer,
-} from "react";
+import React, { useContext, useState, useEffect, useReducer } from "react";
 //
 import UserDatabaseServices from "../Firebase/firebase-services";
 import reducer from "./Reducer";
@@ -57,6 +51,7 @@ const AppProvider = ({ children }) => {
   const [newClient, setNewClient] = useState(newClientTemplate);
   const [debitClient, setDebitClient] = useState(debitClientTemplate);
   const [creditClient, setCreditClient] = useState(creditClientTemplate);
+  const [focusedClient, setFocusedClient] = useState(null);
   //
   //
   const submitNewClient = (e) => {
@@ -227,6 +222,7 @@ const AppProvider = ({ children }) => {
     <AppContext.Provider
       value={{
         ...state,
+        dispatch,
         newClient,
         setNewClient,
         submitNewClient,
@@ -237,6 +233,8 @@ const AppProvider = ({ children }) => {
         creditClient,
         setCreditClient,
         handleCredit,
+        focusedClient,
+        setFocusedClient,
       }}
     >
       {children}
@@ -251,5 +249,3 @@ export const useGlobalContext = () => {
 export { AppContext, AppProvider };
 
 //
-// Not really sure why the "user is true?? console log gets logged again".
-// But going to move on

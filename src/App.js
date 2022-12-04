@@ -21,7 +21,7 @@ function App() {
       {/*<Route path="/" element={<ProtectedRoute />}>*/}
       <Route path="/home" element={<HomePage />}>
         <Route index element={<HomeHome />} />
-        <Route path="client/:clientId" element={<HomeClient />}>
+        <Route path="client/:clientUID" element={<HomeClient />}>
           <Route index element={<ClientInfo />} />
           <Route path="receipts" element={<ClientReceipts />} />
           <Route path="transaction" element={<ClientTransaction />} />
