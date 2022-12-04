@@ -1,12 +1,20 @@
+import { ActionCodeOperation } from "firebase/auth";
+
 const reducer = (state, action) => {
   //
-  // if (action.type === "SET_FOCUSED_CLIENT_OF_USER") {
-  //   return {
-  //     ...state,
-  //     focusedClientUID: action.payload.uid,
-  //     focusedClient: action.payload.itemObj,
-  //   };
-  // }
+  if (action.type === "UPDATE_NOTES_OF_FOCUSED_CLIENT") {
+    const updatedClientsArray = state.clients.map((client) => {
+      if (client.uid === action.payload.uid) {
+        return { ...client, notes: action.payload.notes };
+      } else {
+        return client;
+      }
+    });
+    return {
+      ...state,
+      clients: updatedClientsArray,
+    };
+  }
   //
   //
   if (action.type === "SUBMIT_NEW_CLIENT_TO_USER") {

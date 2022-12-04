@@ -47,6 +47,7 @@ const AppContext = React.createContext();
 //
 //
 const AppProvider = ({ children }) => {
+  //
   const [state, dispatch] = useReducer(reducer, initialState);
   const [newClient, setNewClient] = useState(newClientTemplate);
   const [debitClient, setDebitClient] = useState(debitClientTemplate);
@@ -167,6 +168,31 @@ const AppProvider = ({ children }) => {
       newClientDataWithDebit
     );
   };
+  //
+  const handleNoteUpdate = async (e) => {
+    e.preventDefault();
+    // Update state client with new notes...
+    dispatch({
+      type: "UPDATE_NOTES_OF_FOCUSED_CLIENT",
+      payload: focusedClient,
+    });
+    // Update DB with new notes
+    const clientId = await getClientId(
+      state.userInfo.userID,
+      focusedClient.uid
+    );
+    const oldClientData = await UserDatabaseServices.getSpecificClientFromUser(
+      state.userInfo.userID,
+      clientId
+    );
+    const updatedNotes = focusedClient.notes;
+    const newClientData = { ...oldClientData.data(), notes: updatedNotes };
+    await UserDatabaseServices.updateClientOfUser(
+      state.userInfo.userID,
+      clientId,
+      newClientData
+    );
+  };
   // This should be hydrateState... this function runs everytime the user has refreshed the page or navigated... so why not use it to hydrate the local state
   const hydrateState = async (userObj) => {
     // console.log("In Hydrate.. userOjb is :", Boolean(userObj));
@@ -235,6 +261,7 @@ const AppProvider = ({ children }) => {
         handleCredit,
         focusedClient,
         setFocusedClient,
+        handleNoteUpdate,
       }}
     >
       {children}
