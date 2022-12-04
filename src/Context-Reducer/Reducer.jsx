@@ -10,9 +10,10 @@ const reducer = (state, action) => {
   //
   if (action.type === "DELETE_CLIENT_FROM_USER") {
     // Create new array of client, excluding unwanted client
-    const updatedClients = state.clients.filter(
-      (client) => client.uid !== action.payload
-    );
+    console.log();
+    const updatedClients = state.clients.filter((client) => {
+      return client.uid !== action.payload;
+    });
     return {
       ...state,
       clients: updatedClients,

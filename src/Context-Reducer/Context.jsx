@@ -60,7 +60,7 @@ const AppProvider = ({ children }) => {
     const userID = state.userInfo.userID;
     const clientData = {
       ...newClient,
-      // uid: uuidv4(),
+      uid: uuidv4(),
       joined: new Date().toISOString().slice(0, 10),
     };
     // Update DB
@@ -100,13 +100,14 @@ const AppProvider = ({ children }) => {
     e.preventDefault();
     // Gaurd clause to ensure user selects a client
     if (!debitClient.name) return;
-    console.log("Working! And the debit looks like this: ", debitClient);
     // Updating debit note with uuid. This obj used for db write
     const newDebitData = { ...debitClient, uid: uuidv4() };
     const userID = state.userInfo.userID;
     const clientUID = state.clients.find(
       (client) => client.name === debitClient.name
     ).uid;
+    // set debitTemplate back to default
+    setDebitClient(debitClientTemplate);
     //
     dispatch({
       type: "DEBIT_CLIENT_OF_USER",
@@ -123,7 +124,6 @@ const AppProvider = ({ children }) => {
       ...oldClientData.data(),
       debits: [...oldClientData.data().debits, { ...newDebitData }],
     };
-    console.log(newClientDataWithDebit);
     // Updated the client with this debit note
     await UserDatabaseServices.updateClientOfUser(
       userID,
