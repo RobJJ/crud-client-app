@@ -9,3 +9,9 @@ Find a possible solution to the id problem...
 .
 .
 Dont actually need the name in the debit note... we are using it for matching... look into a way to remove this.
+.
+.
+Look into finding a way to handle debit and credit in one function..
+.
+.
+Need to add a check for addClient, to make sure no two clients have the same name

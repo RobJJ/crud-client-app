@@ -21,8 +21,6 @@ const reducer = (state, action) => {
   }
   //
   if (action.type === "DEBIT_CLIENT_OF_USER") {
-    // console.log(action.payload.newDebitData);
-    // action.payload.clientUID
     const updatedClientsArray = state.clients.map((client) => {
       if (client.uid === action.payload.clientUID) {
         return {
@@ -33,6 +31,26 @@ const reducer = (state, action) => {
         return client;
       }
     });
+    return {
+      ...state,
+      clients: updatedClientsArray,
+    };
+  }
+  //
+  //
+  if (action.type === "CREDIT_CLIENT_OF_USER") {
+    //
+    const updatedClientsArray = state.clients.map((client) => {
+      if (client.uid === action.payload.clientUID) {
+        return {
+          ...client,
+          credits: [...client.credits, { ...action.payload.newCreditData }],
+        };
+      } else {
+        return client;
+      }
+    });
+    //
     return {
       ...state,
       clients: updatedClientsArray,

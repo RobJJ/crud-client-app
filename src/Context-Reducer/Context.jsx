@@ -41,6 +41,13 @@ const debitClientTemplate = {
   note: "",
   uid: "",
 };
+const creditClientTemplate = {
+  name: "",
+  date: "",
+  sessions: 1,
+  note: "",
+  uid: "",
+};
 //
 const AppContext = React.createContext();
 //
@@ -49,7 +56,7 @@ const AppProvider = ({ children }) => {
   const [state, dispatch] = useReducer(reducer, initialState);
   const [newClient, setNewClient] = useState(newClientTemplate);
   const [debitClient, setDebitClient] = useState(debitClientTemplate);
-
+  const [creditClient, setCreditClient] = useState(creditClientTemplate);
   //
   //
   const submitNewClient = (e) => {
@@ -74,14 +81,13 @@ const AppProvider = ({ children }) => {
   };
   // This gets the clients unique ID from the Database
   const getClientId = async (userId, clientUID) => {
-    const arrayOfUsers = await UserDatabaseServices.getAllUsersClients(
+    const arrayOfUsersClients = await UserDatabaseServices.getAllUsersClients(
       state.userInfo.userID
     );
     // This iterates through the arr and returns the data for each doc
     // arrayOfUsers.forEach((doc) => console.log(doc.data()));
-    const userID = state.userInfo.userID;
     // Find matching doc...then take the ID
-    const clientID = arrayOfUsers.docs.find(
+    const clientID = arrayOfUsersClients.docs.find(
       (client) => client.data().uid === clientUID
     ).id;
     return clientID;
@@ -94,6 +100,41 @@ const AppProvider = ({ children }) => {
 
     const clientID = await getClientId(userID, clientUID);
     UserDatabaseServices.deleteClientFromUser(userID, clientID);
+  };
+  //
+  const handleCredit = async (e) => {
+    e.preventDefault();
+    if (!creditClient.name) return;
+    // Update State
+    const newCreditData = { ...creditClient, uid: uuidv4() };
+    const userID = state.userInfo.userID;
+    const clientUID = state.clients.find(
+      (client) => client.name === creditClient.name
+    ).uid;
+    //
+    setCreditClient(creditClientTemplate);
+    //
+    dispatch({
+      type: "CREDIT_CLIENT_OF_USER",
+      payload: { newCreditData, clientUID },
+    });
+    // Update DB
+    const clientID = await getClientId(userID, clientUID);
+    const oldClientData = await UserDatabaseServices.getSpecificClientFromUser(
+      userID,
+      clientID
+    );
+    // console.log(oldClientData.data());
+    const newClientDataWithCredit = {
+      ...oldClientData.data(),
+      credits: [...oldClientData.data().credits, { ...newCreditData }],
+    };
+    // Updated the client with this debit note
+    await UserDatabaseServices.updateClientOfUser(
+      userID,
+      clientID,
+      newClientDataWithCredit
+    );
   };
   //
   const handleDebit = async (e) => {
@@ -193,6 +234,9 @@ const AppProvider = ({ children }) => {
         debitClient,
         setDebitClient,
         handleDebit,
+        creditClient,
+        setCreditClient,
+        handleCredit,
       }}
     >
       {children}
