@@ -3,98 +3,98 @@ import { useGlobalContext } from "../../Context-Reducer/Context";
 //
 import ReceiptItem from "./Client-Receipts-item-component";
 //
-const receiptTestArr = [
-  {
-    date: "22-10-2022",
-    amount: "550 usd",
-    sessions: 10,
-    id: 1,
-  },
-  {
-    date: "10-10-2022",
-    amount: "250 usd",
-    sessions: 4,
-    id: 2,
-  },
-  {
-    date: "19-09-2022",
-    amount: "100 usd",
-    sessions: 2,
-    id: 3,
-  },
-  {
-    date: "22-10-2022",
-    amount: "",
-    sessions: 3,
-    id: 4,
-  },
-  {
-    date: "22-10-2022",
-    amount: "550 usd",
-    sessions: 10,
-    id: 5,
-  },
-  {
-    date: "22-10-2022",
-    amount: "550 usd",
-    sessions: 10,
-    id: 6,
-  },
-  {
-    date: "22-10-2022",
-    amount: "550 usd",
-    sessions: 10,
-    id: 7,
-  },
-  {
-    date: "22-10-2022",
-    amount: "550 usd",
-    sessions: 10,
-    id: 8,
-  },
-  {
-    date: "22-10-2022",
-    amount: "550 usd",
-    sessions: 10,
-    id: 9,
-  },
-  {
-    date: "22-10-2022",
-    amount: "550 usd",
-    sessions: 10,
-    id: 10,
-  },
-  {
-    date: "22-10-2022",
-    amount: "550 usd",
-    sessions: 10,
-    id: 11,
-  },
-  {
-    date: "22-10-2022",
-    amount: "550 usd",
-    sessions: 10,
-    id: 12,
-  },
-  {
-    date: "22-10-2022",
-    amount: "550 usd",
-    sessions: 10,
-    id: 13,
-  },
-  {
-    date: "22-10-2022",
-    amount: "550 usd",
-    sessions: 10,
-    id: 14,
-  },
-  {
-    date: "22-10-2022",
-    amount: "550 usd",
-    sessions: 10,
-    id: 15,
-  },
-];
+// const receiptTestArr = [
+//   {
+//     date: "22-10-2022",
+//     amount: "550 usd",
+//     sessions: 10,
+//     id: 1,
+//   },
+//   {
+//     date: "10-10-2022",
+//     amount: "250 usd",
+//     sessions: 4,
+//     id: 2,
+//   },
+//   {
+//     date: "19-09-2022",
+//     amount: "100 usd",
+//     sessions: 2,
+//     id: 3,
+//   },
+//   {
+//     date: "22-10-2022",
+//     amount: "",
+//     sessions: 3,
+//     id: 4,
+//   },
+//   {
+//     date: "22-10-2022",
+//     amount: "550 usd",
+//     sessions: 10,
+//     id: 5,
+//   },
+//   {
+//     date: "22-10-2022",
+//     amount: "550 usd",
+//     sessions: 10,
+//     id: 6,
+//   },
+//   {
+//     date: "22-10-2022",
+//     amount: "550 usd",
+//     sessions: 10,
+//     id: 7,
+//   },
+//   {
+//     date: "22-10-2022",
+//     amount: "550 usd",
+//     sessions: 10,
+//     id: 8,
+//   },
+//   {
+//     date: "22-10-2022",
+//     amount: "550 usd",
+//     sessions: 10,
+//     id: 9,
+//   },
+//   {
+//     date: "22-10-2022",
+//     amount: "550 usd",
+//     sessions: 10,
+//     id: 10,
+//   },
+//   {
+//     date: "22-10-2022",
+//     amount: "550 usd",
+//     sessions: 10,
+//     id: 11,
+//   },
+//   {
+//     date: "22-10-2022",
+//     amount: "550 usd",
+//     sessions: 10,
+//     id: 12,
+//   },
+//   {
+//     date: "22-10-2022",
+//     amount: "550 usd",
+//     sessions: 10,
+//     id: 13,
+//   },
+//   {
+//     date: "22-10-2022",
+//     amount: "550 usd",
+//     sessions: 10,
+//     id: 14,
+//   },
+//   {
+//     date: "22-10-2022",
+//     amount: "550 usd",
+//     sessions: 10,
+//     id: 15,
+//   },
+// ];
 //
 //
 function ClientReceipts(params) {

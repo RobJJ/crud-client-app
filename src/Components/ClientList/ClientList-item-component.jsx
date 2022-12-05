@@ -12,7 +12,7 @@ import { useGlobalContext } from "../../Context-Reducer/Context";
 
 function ClientListItem({ itemObj }) {
   const { name, uid } = itemObj;
-  const { deleteClient, dispatch, setFocusedClient } = useGlobalContext();
+  const { deleteClient, setFocusedClient } = useGlobalContext();
   //
   // const createNameForUrl = (name) => {
   //   return name.split(" ")[0];

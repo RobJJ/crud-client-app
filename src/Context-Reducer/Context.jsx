@@ -114,6 +114,12 @@ const AppProvider = ({ children }) => {
       type: "CREDIT_CLIENT_OF_USER",
       payload: { newCreditData, clientUID },
     });
+    // Updated focusedClient too - to consider moving focusedClient to state
+    // dispatch({ type: "HYDRATE_FOCUSED_CLIENT", payload: clientUID });
+    setFocusedClient({
+      ...focusedClient,
+      credits: [...focusedClient.credits, { ...newCreditData }],
+    });
     // Update DB
     const clientID = await getClientId(userID, clientUID);
     const oldClientData = await UserDatabaseServices.getSpecificClientFromUser(
@@ -124,6 +130,8 @@ const AppProvider = ({ children }) => {
     const newClientDataWithCredit = {
       ...oldClientData.data(),
       credits: [...oldClientData.data().credits, { ...newCreditData }],
+      balance:
+        Number(oldClientData.data().balance) - Number(newCreditData.sessions),
     };
     // Updated the client with this debit note
     await UserDatabaseServices.updateClientOfUser(
@@ -150,6 +158,8 @@ const AppProvider = ({ children }) => {
       type: "DEBIT_CLIENT_OF_USER",
       payload: { newDebitData, clientUID },
     });
+    // Update the focusedClient with new data too
+    dispatch({ type: "HYDRATE_FOCUSED_CLIENT", payload: clientUID });
     //
     const clientID = await getClientId(userID, clientUID);
     const oldClientData = await UserDatabaseServices.getSpecificClientFromUser(
@@ -160,6 +170,8 @@ const AppProvider = ({ children }) => {
     const newClientDataWithDebit = {
       ...oldClientData.data(),
       debits: [...oldClientData.data().debits, { ...newDebitData }],
+      balance:
+        Number(oldClientData.data().balance) + Number(newDebitData.sessions),
     };
     // Updated the client with this debit note
     await UserDatabaseServices.updateClientOfUser(

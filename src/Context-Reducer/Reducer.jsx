@@ -38,11 +38,15 @@ const reducer = (state, action) => {
   }
   //
   if (action.type === "DEBIT_CLIENT_OF_USER") {
+    //Making changes to the main state
     const updatedClientsArray = state.clients.map((client) => {
       if (client.uid === action.payload.clientUID) {
         return {
           ...client,
           debits: [...client.debits, { ...action.payload.newDebitData }],
+          balance:
+            Number(client.balance) +
+            Number(action.payload.newDebitData.sessions),
         };
       } else {
         return client;
@@ -56,12 +60,15 @@ const reducer = (state, action) => {
   //
   //
   if (action.type === "CREDIT_CLIENT_OF_USER") {
-    //
+    // Making changes to the main state
     const updatedClientsArray = state.clients.map((client) => {
       if (client.uid === action.payload.clientUID) {
         return {
           ...client,
           credits: [...client.credits, { ...action.payload.newCreditData }],
+          balance:
+            Number(client.balance) -
+            Number(action.payload.newCreditData.sessions),
         };
       } else {
         return client;
@@ -71,6 +78,23 @@ const reducer = (state, action) => {
     return {
       ...state,
       clients: updatedClientsArray,
+    };
+  }
+  //
+  //
+  if (action.type === "HYDRATE_FOCUSED_CLIENT") {
+    // payload: focusedClient - uid...
+    // find this client in the state (this will be the updated one) and just overwrite focusedClient
+    // This will updat the focusedClient to haver the new debits,credits,balance
+    // solved bitch
+    const updatedFocusedClient = state.clients.find(
+      (client) => client.uid === action.payload
+    );
+    console.log(updatedFocusedClient);
+    //
+    return {
+      ...state,
+      // focusedClient: updatedFocusedClient,
     };
   }
   //
