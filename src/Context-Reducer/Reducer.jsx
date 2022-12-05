@@ -1,18 +1,23 @@
-import { ActionCodeOperation } from "firebase/auth";
+// import { ActionCodeOperation } from "firebase/auth";
 
 const reducer = (state, action) => {
   //
   if (action.type === "UPDATE_NOTES_OF_FOCUSED_CLIENT") {
     const updatedClientsArray = state.clients.map((client) => {
       if (client.uid === action.payload.uid) {
-        return { ...client, notes: action.payload.notes };
+        return { ...client, notes: action.payload.tempNoteState };
       } else {
         return client;
       }
     });
+    //
     return {
       ...state,
       clients: updatedClientsArray,
+      focusedClient: {
+        ...state.focusedClient,
+        notes: action.payload.tempNoteState,
+      },
     };
   }
   //
@@ -39,6 +44,7 @@ const reducer = (state, action) => {
   //
   if (action.type === "DEBIT_CLIENT_OF_USER") {
     //Making changes to the main state
+    console.log("Dispatched debit clients of user");
     const updatedClientsArray = state.clients.map((client) => {
       if (client.uid === action.payload.clientUID) {
         return {
@@ -82,7 +88,28 @@ const reducer = (state, action) => {
   }
   //
   //
+  if (action.type === "SET_FOCUSED_CLIENT") {
+    const chosenClient = state.clients.find(
+      (client) => client.uid === action.payload
+    );
+    //
+    return {
+      ...state,
+      focusedClient: chosenClient,
+    };
+  }
+  //
+  //
   if (action.type === "HYDRATE_FOCUSED_CLIENT") {
+    // Gaurd clause to fail fast if user is adding debit from QuickBar
+    // In this case there will be no focusedClient
+    if (!state.focusedClient) {
+      return {
+        ...state,
+      };
+    }
+    console.log("hydrate the focused client has been called");
+    //
     // payload: focusedClient - uid...
     // find this client in the state (this will be the updated one) and just overwrite focusedClient
     // This will updat the focusedClient to haver the new debits,credits,balance
@@ -90,11 +117,10 @@ const reducer = (state, action) => {
     const updatedFocusedClient = state.clients.find(
       (client) => client.uid === action.payload
     );
-    console.log(updatedFocusedClient);
     //
     return {
       ...state,
-      // focusedClient: updatedFocusedClient,
+      focusedClient: updatedFocusedClient,
     };
   }
   //

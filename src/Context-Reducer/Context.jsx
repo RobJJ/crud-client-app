@@ -15,6 +15,7 @@ const initialState = {
   userInfo: {},
   // could add - finances here for later
   // add uniqueClients count?
+  focusedClient: null,
 };
 const newClientTemplate = {
   name: "",
@@ -52,7 +53,7 @@ const AppProvider = ({ children }) => {
   const [newClient, setNewClient] = useState(newClientTemplate);
   const [debitClient, setDebitClient] = useState(debitClientTemplate);
   const [creditClient, setCreditClient] = useState(creditClientTemplate);
-  const [focusedClient, setFocusedClient] = useState(null);
+  // const [focusedClient, setFocusedClient] = useState(null);
   //
   //
   const submitNewClient = (e) => {
@@ -114,12 +115,11 @@ const AppProvider = ({ children }) => {
       type: "CREDIT_CLIENT_OF_USER",
       payload: { newCreditData, clientUID },
     });
-    // Updated focusedClient too - to consider moving focusedClient to state
-    // dispatch({ type: "HYDRATE_FOCUSED_CLIENT", payload: clientUID });
-    setFocusedClient({
-      ...focusedClient,
-      credits: [...focusedClient.credits, { ...newCreditData }],
-    });
+    //
+    // Update the focusedClient with new data too (if client is in focus)
+    // The dispatch will fail fast if this is being done from QuickBar
+    dispatch({ type: "HYDRATE_FOCUSED_CLIENT", payload: clientUID });
+    //
     // Update DB
     const clientID = await getClientId(userID, clientUID);
     const oldClientData = await UserDatabaseServices.getSpecificClientFromUser(
@@ -143,6 +143,7 @@ const AppProvider = ({ children }) => {
   //
   const handleDebit = async (e) => {
     e.preventDefault();
+    console.log("Handle Debit has been called!!");
     // Gaurd clause to ensure user selects a client
     if (!debitClient.name) return;
     // Updating debit note with uuid. This obj used for db write
@@ -158,7 +159,8 @@ const AppProvider = ({ children }) => {
       type: "DEBIT_CLIENT_OF_USER",
       payload: { newDebitData, clientUID },
     });
-    // Update the focusedClient with new data too
+    // Update the focusedClient with new data too (if client is in focus)
+    // The dispatch will fail fast if this is being done from QuickBar
     dispatch({ type: "HYDRATE_FOCUSED_CLIENT", payload: clientUID });
     //
     const clientID = await getClientId(userID, clientUID);
@@ -181,23 +183,26 @@ const AppProvider = ({ children }) => {
     );
   };
   //
-  const handleNoteUpdate = async (e) => {
+  const handleFocusedClientSetter = (uid) => {
+    // e.preventDefault();
+    console.log("focusedClient has been set");
+    dispatch({ type: "SET_FOCUSED_CLIENT", payload: uid });
+  };
+  //
+  const handleNoteUpdate = async (e, uid, tempNoteState) => {
     e.preventDefault();
     // Update state client with new notes...
     dispatch({
       type: "UPDATE_NOTES_OF_FOCUSED_CLIENT",
-      payload: focusedClient,
+      payload: { uid, tempNoteState },
     });
     // Update DB with new notes
-    const clientId = await getClientId(
-      state.userInfo.userID,
-      focusedClient.uid
-    );
+    const clientId = await getClientId(state.userInfo.userID, uid);
     const oldClientData = await UserDatabaseServices.getSpecificClientFromUser(
       state.userInfo.userID,
       clientId
     );
-    const updatedNotes = focusedClient.notes;
+    const updatedNotes = tempNoteState;
     const newClientData = { ...oldClientData.data(), notes: updatedNotes };
     await UserDatabaseServices.updateClientOfUser(
       state.userInfo.userID,
@@ -271,9 +276,8 @@ const AppProvider = ({ children }) => {
         creditClient,
         setCreditClient,
         handleCredit,
-        focusedClient,
-        setFocusedClient,
         handleNoteUpdate,
+        handleFocusedClientSetter,
       }}
     >
       {children}

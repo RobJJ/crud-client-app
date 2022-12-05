@@ -15,3 +15,6 @@ Look into finding a way to handle debit and credit in one function..
 .
 .
 Need to add a check for addClient, to make sure no two clients have the same name
+.
+.
+Whne clicking HOME... maybe set focusedClient back to null ?
