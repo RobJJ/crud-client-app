@@ -39,67 +39,20 @@ function ClientTransaction(params) {
   };
   //
   return (
-    <div className="bg-red-200 w-full h-full flex flex-col gap-2 p-2">
-      {/* button selector.. dictates a 'type' of transaction */}
-      <section className="bg-green-200 flex gap-2 text-center p-2">
-        <div className="w-1/2 bg-green-300 flex justify-center p-2">
-          <button
-            type="button"
-            onClick={handleTransactionChoice}
-            data-tag="debit"
-            className="bg-white p-2 text-xl underline rounded-xl"
-          >
-            DEBIT
-          </button>
-        </div>
-        <div className="w-1/2 bg-green-300 flex justify-center p-2">
-          <button
-            type="button"
-            onClick={handleTransactionChoice}
-            data-tag="credit"
-            className="bg-white p-2 text-xl underline rounded-xl"
-          >
-            CREDIT
-          </button>
-        </div>
-      </section>
-      {/* form input section. fade certain inputs based on user choice */}
-
-      <section className="bg-green-200 h-full w-full flex p-10 flex-col gap-2">
-        <h2 className="bg-green-300 text-center text-lg">
-          Complete the form to{" "}
-          <span className="underline">{transaction.type}</span> the client
-        </h2>
-        <form
-          onSubmit={handleTransactionSubmit}
-          ref={formRef}
-          className="bg-green-300 w-full h-full p-5 flex flex-col gap-2 text-center rounded-xl border border-black opacity-25"
-        >
-          <div className="bg-purple-200 p-2 flex w-full">
-            <label className="w-1/2">DATE:</label>
-            <input className="w-1/2 p-2" />
-          </div>
-          <div className="bg-purple-200 p-2 flex w-full">
-            <label className="w-1/2">AMOUNT:</label>
-            <input className="w-1/2 p-2" />
-          </div>
-          <div className="bg-purple-200 p-2 flex w-full">
-            <label className="w-1/2">SESSIONS:</label>
-            <input className="w-1/2 p-2" />
-          </div>
-          <div className="bg-purple-200 p-2 flex w-full">
-            <label className="w-1/2">NOTES:</label>
-            <input className="w-1/2 p-2" />
-          </div>
-          <div className="bg-purple-200 p-2 flex justify-center">
-            <button type="submit" className="bg-white p-2 rounded-xl">
-              SUBMIT
-            </button>
-          </div>
-        </form>
-      </section>
+    <div className="bg-red-200 w-full h-full p-5 flex justify-center">
+      <form className="bg-red-300 max-w-md w-full h-full flex flex-col gap-2 p-2 ">
+        <section className="bg-yellow-200 text-center flex p-2 gap-1 text-xl">
+          <div className="w-1/2 bg-white">Debit</div>
+          <div className="w-1/2 bg-white">Credit</div>
+        </section>
+        <section className="bg-yellow-200">Inputs</section>
+        <section className="bg-yellow-200">Submit</section>
+      </form>
     </div>
   );
 }
 
 export default ClientTransaction;
+
+// give the form width a max size.. and then make it cover full space if able
+// with the max width set.. it will only be that big and then shrink as screen size decreases... set max width to a size... but also set w-full

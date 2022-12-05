@@ -1,5 +1,5 @@
-import React, { useEffect } from "react";
-import { Outlet, useParams } from "react-router-dom";
+import React from "react";
+import { Outlet } from "react-router-dom";
 import ClientNav from "../Components/Client/Client-Navbar-component";
 import { useGlobalContext } from "../Context-Reducer/Context";
 
@@ -8,10 +8,10 @@ import { useGlobalContext } from "../Context-Reducer/Context";
 function HomeClient() {
   // If there is a focusedClient set in state.. then render the client from the reducer state. This will be faster. If however there is no focusedClient set but we are on this page - (means that the user fkn refreshed while on this page) - then take the url param and reset the focusedClient state.. and then render the client... I think we can avoid using the DB.. the state will still be correct from DB because the context rerenders and thus calls the useEffect which sets the state to what the db has.
   // Get the clientUID from url -
-  let { clientUID } = useParams();
+  // let { clientUID } = useParams();
   // console.log("clientUID is : ", clientUID);
   //
-  const { clients, focusedClient, setFocusedClient } = useGlobalContext();
+  const { focusedClient } = useGlobalContext();
 
   // If the user refreshes the page.. it will set the focusedClient to empty.. and it will trigger this.. returning them back to home...
   // It forces them to client the client they want to manage again, thus rebuilding the focusedClient object
