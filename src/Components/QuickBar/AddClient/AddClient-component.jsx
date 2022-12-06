@@ -1,7 +1,7 @@
-import React, { useRef } from "react";
+import React from "react";
 import { useGlobalContext } from "../../../Context-Reducer/Context";
 //
-// Lets first get this working, and then refactor
+//
 function AddClient(params) {
   //
   // newClient is an object with all the client properties

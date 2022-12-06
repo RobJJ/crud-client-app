@@ -53,7 +53,6 @@ const AppProvider = ({ children }) => {
   const [newClient, setNewClient] = useState(newClientTemplate);
   const [debitClient, setDebitClient] = useState(debitClientTemplate);
   const [creditClient, setCreditClient] = useState(creditClientTemplate);
-  // const [focusedClient, setFocusedClient] = useState(null);
   //
   //
   const submitNewClient = (e) => {

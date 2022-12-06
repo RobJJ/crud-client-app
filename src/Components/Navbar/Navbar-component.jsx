@@ -21,22 +21,27 @@ function Navbar(params) {
   };
   //
   return (
-    <div className="bg-blue-300 grid grid-cols-3 gap-5 justify-items-stretch p-5">
-      <Link onClick={handleSignOut} className="bg-blue-100 underline text-2xl ">
-        Sign Out
+    <div className="bg-blue-300 grid grid-cols-3 p-5 text-center font-mainNavBar tracking-widest">
+      <Link
+        onClick={handleSignOut}
+        className="bg-blue-800 underline text-2xl text-white"
+      >
+        SIGN OUT
       </Link>
 
       <Link
         to="/home"
         // onClick={() => setIsClientBeingManaged(false)}
-        className="bg-blue-100 underline text-2xl flex items-center gap-2"
+        className="bg-blue-800 underline text-2xl flex items-center justify-center gap-2 text-white"
       >
         <FaHome />
-        <div>Home</div>
+        <div>HOME</div>
       </Link>
 
-      <div className="bg-blue-100 underline text-2xl mr-5 col-start-3 col-end-4">
-        {userInfo.displayName ? `${userInfo.displayName}` : "Loading spinner"}
+      <div className="bg-blue-800 text-white underline text-2xl">
+        {userInfo.displayName
+          ? `${userInfo.displayName.toUpperCase()}`
+          : "Loading spinner"}
       </div>
     </div>
   );

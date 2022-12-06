@@ -35,34 +35,26 @@ function QuickBar(params) {
   };
   //
   return (
-    <div className="bg-purple-300 w-full flex flex-col p-5 gap-5">
+    <div className="bg-purple-300 w-full flex flex-col p-10 pb-0 gap-5">
       {/* 3 QUICK BUTTONS */}
-      <div className="flex justify-around">
-        <div className="bg-purple-100  text-2xl ">
-          <div
-            onClick={handleQuickRequest}
-            data-tag="quick-add"
-            className="border-y-2 border-black p-2"
-          >
-            Add client
+      <div className="grid grid-cols-3 gap-1 text-center text-xl bg-blue-800 text-white">
+        <div className=" ">
+          <div onClick={handleQuickRequest} data-tag="quick-add" className="">
+            ADD CLIENT
           </div>
         </div>
-        <div className="bg-purple-100  text-2xl ">
-          <div
-            onClick={handleQuickRequest}
-            data-tag="quick-debit"
-            className="border-y-2 border-black p-2"
-          >
-            Debit
+        <div className=" ">
+          <div onClick={handleQuickRequest} data-tag="quick-debit" className="">
+            DEBIT
           </div>
         </div>
-        <div className="bg-purple-100  text-2xl ">
+        <div className=" ">
           <div
             onClick={handleQuickRequest}
             data-tag="quick-credit"
-            className="border-y-2 border-black p-2"
+            className=""
           >
-            Credit
+            CREDIT
           </div>
         </div>
       </div>

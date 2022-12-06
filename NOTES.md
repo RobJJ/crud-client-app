@@ -5,10 +5,10 @@ However from that point on, things will move faster as we will use local state t
 .
 .
 .
-Find a possible solution to the id problem...
+Find a possible solution to the id (url uid) problem...
 .
 .
-Dont actually need the name in the debit note... we are using it for matching... look into a way to remove this.
+Dont actually need the name in the debit and credit note transaction page ... we are using it for matching... look into a way to remove this.
 .
 .
 Look into finding a way to handle debit and credit in one function..
