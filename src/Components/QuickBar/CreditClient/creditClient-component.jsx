@@ -86,7 +86,7 @@ function CreditClient(params) {
           type="submit"
           className="bg-green-500 text-white border-2 border-white rounded-xl w-1/3 m-auto"
         >
-          Submit
+          Credit Client
         </button>
       </form>
     </div>

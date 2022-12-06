@@ -17,7 +17,7 @@ function ClientListItem({ itemObj }) {
   //
   //
   return (
-    <div className="max-w-2xl w-full bg-white border-2 border-white rounded-lg p-1 flex items-center text-blue-800">
+    <div className="max-w-2xl w-full bg-white border-2 border-white rounded-lg p-1 flex items-center text-blue-800 hover:border-black">
       <Link
         to={`client/:${uid}`}
         onClick={() => handleFocusedClientSetter(uid)}
