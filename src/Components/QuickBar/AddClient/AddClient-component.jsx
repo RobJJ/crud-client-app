@@ -19,10 +19,10 @@ function AddClient(params) {
   //
   return (
     <div className=" flex flex-col">
-      <div className="w-full bg-red-200 flex flex-col p-2">
+      <div className="max-w-lg w-full m-auto bg-blue-300 border-4 border-white rounded-xl flex flex-col p-2">
         <form
           onSubmit={submitNewClient}
-          className="flex flex-col gap-2 text-center"
+          className="flex flex-col w-full max-w-md gap-2 text-center m-auto"
         >
           <div>
             <input
@@ -32,7 +32,7 @@ function AddClient(params) {
               placeholder="Name"
               value={newClient.name}
               onChange={handleInputChange}
-              className="w-2/3 rounded-xl p-2 text-center"
+              className="w-full rounded-xl p-2 text-center"
             />
           </div>
           <div>
@@ -42,7 +42,7 @@ function AddClient(params) {
               placeholder="Contact"
               value={newClient.contact}
               onChange={handleInputChange}
-              className="w-2/3 rounded-xl p-2 text-center"
+              className="w-full rounded-xl p-2 text-center"
             />
           </div>
           <div>
@@ -52,7 +52,7 @@ function AddClient(params) {
               placeholder="Email"
               value={newClient.email}
               onChange={handleInputChange}
-              className="w-2/3 rounded-xl p-2 text-center"
+              className="w-full rounded-xl p-2 text-center"
             />
           </div>
           <div>
@@ -62,14 +62,14 @@ function AddClient(params) {
               placeholder="Initial Note"
               value={newClient.notes}
               onChange={handleInputChange}
-              className="w-2/3 rounded-xl p-2 text-center resize-none"
+              className="w-full rounded-xl p-2 text-center resize-none"
             />
           </div>
           <button
             type="submit"
-            className="bg-red-400 text-white w-1/3 rounded-xl m-auto"
+            className="bg-green-500 text-white w-1/3 rounded-xl m-auto border-2 border-white"
           >
-            Add
+            Add Client
           </button>
         </form>
       </div>

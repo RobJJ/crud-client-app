@@ -19,14 +19,10 @@ function QuickBar(params) {
   const handleQuickRequest = (e) => {
     e.preventDefault();
     const quickOptionRequested = e.target.dataset.tag;
-    // console.log(typeof quickOptionRequested);
+    //
     setQuickTray(quickOptionRequested);
     // check what is requested based on click
     // set the currentPage to the correct obj.
-    // quickOptionRequested === "log-private"
-    //   ? setCurrentLogPage("private")
-    //   : setCurrentLogPage("class");
-    // //
     if (quickTrayRef.current.classList.contains("hidden")) {
       quickTrayRef.current.classList.remove("hidden");
     } else {
@@ -35,31 +31,42 @@ function QuickBar(params) {
   };
   //
   return (
-    <div className="bg-purple-300 w-full flex flex-col p-10 pb-0 gap-5">
+    <div className="bg-purple-300 w-full flex flex-col p-5 pb-0 ">
       {/* 3 QUICK BUTTONS */}
-      <div className="grid grid-cols-3 gap-1 text-center text-xl bg-blue-800 text-white">
-        <div className=" ">
-          <div onClick={handleQuickRequest} data-tag="quick-add" className="">
-            ADD CLIENT
-          </div>
-        </div>
-        <div className=" ">
-          <div onClick={handleQuickRequest} data-tag="quick-debit" className="">
-            DEBIT
-          </div>
-        </div>
+      <div className="grid grid-cols-3 p-2 gap-1 text-center text-xl bg-blue-800 text-white border-b-4 border-white">
         <div className=" ">
           <div
             onClick={handleQuickRequest}
+            data-tag="quick-add"
+            className="cursor-pointer"
+          >
+            ADD CLIENT
+          </div>
+        </div>
+        <div className="">
+          <div
+            onClick={handleQuickRequest}
+            data-tag="quick-debit"
+            className="cursor-pointer"
+          >
+            DEBIT
+          </div>
+        </div>
+        <div className="">
+          <div
+            onClick={handleQuickRequest}
             data-tag="quick-credit"
-            className=""
+            className="cursor-pointer"
           >
             CREDIT
           </div>
         </div>
       </div>
       {/* TRAY  */}
-      <div ref={quickTrayRef} className="bg-purple-100 hidden">
+      <div
+        ref={quickTrayRef}
+        className="bg-blue-800 hidden p-2 border-b-4 border-white "
+      >
         {quickOptions[`${quickTray}`]}
       </div>
     </div>
