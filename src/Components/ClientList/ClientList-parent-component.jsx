@@ -22,7 +22,7 @@ function ClientList(params) {
   //
   return (
     <div className="bg-green-200 w-full h-full flex flex-col overflow-auto p-5 pt-0">
-      <section className=" flex justify-center bg-blue-800 p-5">
+      <section className=" flex justify-center bg-blue-800 p-5 border-l-4 border-r-4 border-white">
         <input
           type="search"
           placeholder="Search for client..."
@@ -34,7 +34,7 @@ function ClientList(params) {
         />
       </section>
 
-      <section className="bg-blue-800 overflow-auto h-full w-full flex flex-col gap-3 mb-2 items-center">
+      <section className="bg-blue-800 overflow-auto h-full w-full flex flex-col gap-3 mb-2 items-center border-l-4 border-r-4 border-b-4 border-white rounded-b-xl">
         {filteredClients.map((client) => (
           <ClientListItem key={client.uid} itemObj={client} />
         ))}

@@ -33,7 +33,7 @@ function QuickBar(params) {
   return (
     <div className="bg-purple-300 w-full flex flex-col p-5 pb-0 ">
       {/* 3 QUICK BUTTONS */}
-      <div className="grid grid-cols-3 p-2 gap-1 text-center text-xl bg-blue-800 text-white border-b-4 border-white">
+      <div className="grid grid-cols-3 p-2 gap-1 text-center text-xl bg-blue-800 text-white border-4 border-white rounded-t-xl">
         <div className=" ">
           <div
             onClick={handleQuickRequest}
@@ -65,7 +65,7 @@ function QuickBar(params) {
       {/* TRAY  */}
       <div
         ref={quickTrayRef}
-        className="bg-blue-800 hidden p-2 border-b-4 border-white "
+        className="bg-blue-800 hidden p-2 border-b-4 border-l-4 border-r-4 border-white"
       >
         {quickOptions[`${quickTray}`]}
       </div>

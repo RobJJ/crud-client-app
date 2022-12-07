@@ -38,23 +38,23 @@ function ClientTransaction(params) {
   };
   //
   return (
-    <div className="bg-red-200 w-full h-full p-5 flex justify-center">
+    <div className="bg-blue-800 w-full h-full p-5 flex justify-center">
       <form
         onSubmit={transactionType === "debit" ? handleDebit : handleCredit}
-        className="bg-red-300 max-w-md w-full h-full flex flex-col gap-2 p-2 "
+        className="bg-blue-800 max-w-md w-full h-full flex flex-col gap-2 p-2 "
       >
-        <section className="bg-yellow-200 text-center flex p-2 gap-1 text-xl">
+        <section className="bg-blue-800 text-center flex p-2 gap-1 text-xl">
           <div
-            className={`w-1/2 ${
-              transactionType === "debit" ? "bg-blue-300" : "bg-white"
+            className={`w-1/2 rounded-xl ${
+              transactionType === "debit" ? "bg-blue-200" : "bg-white"
             }`}
             onClick={() => setTransactionType("debit")}
           >
             Debit
           </div>
           <div
-            className={`w-1/2 ${
-              transactionType === "credit" ? "bg-blue-300" : "bg-white"
+            className={`w-1/2 rounded-xl ${
+              transactionType === "credit" ? "bg-blue-200" : "bg-white"
             }`}
             onClick={() => setTransactionType("credit")}
           >
@@ -63,9 +63,9 @@ function ClientTransaction(params) {
         </section>
         {/* DEBIT SECTION */}
         {transactionType === "debit" && (
-          <section className="bg-yellow-200 p-1 flex flex-col gap-1">
+          <section className="bg-blue-300 rounded-xl border-4 border-white p-1 flex flex-col gap-1">
             {/* select client to debit / credit */}
-            <div className="flex flex-col bg-blue-100 p-2 gap-1">
+            <div className="flex flex-col p-2 gap-1">
               <label className=" pl-2">Client</label>
               <select
                 required
@@ -121,9 +121,9 @@ function ClientTransaction(params) {
         )}
         {/* CREDIT SECTION */}
         {transactionType === "credit" && (
-          <section className="bg-yellow-200 p-1 flex flex-col gap-1">
+          <section className="bg-blue-300 border-4 border-white rounded-xl p-1 flex flex-col gap-1">
             {/* select client to debit / credit */}
-            <div className="flex flex-col bg-blue-100 p-2 gap-1">
+            <div className="flex flex-col  p-2 gap-1">
               <label className=" pl-2">Client</label>
               <select
                 required
@@ -164,10 +164,13 @@ function ClientTransaction(params) {
         )}
         {/* submit section */}
         {transactionType && (
-          <section className="bg-yellow-200 p-1">
-            <div className="bg-blue-100 text-center ">
-              <button type="submit" className="bg-white p-1 rounded-xl">
-                Submit
+          <section className="bg-blue-800 p-1">
+            <div className="bg-blue-800 text-center ">
+              <button
+                type="submit"
+                className="bg-green-500 text-white border-2 border-white p-1 rounded-xl"
+              >
+                {transactionType === "debit" ? "Debit Client" : "Credit Client"}
               </button>
             </div>
           </section>

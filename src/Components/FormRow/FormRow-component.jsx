@@ -2,7 +2,7 @@ import React from "react";
 //
 function FormRow({ type, name, value, handleChange, labelText }) {
   return (
-    <div className="flex flex-col p-2 gap-1 bg-blue-100">
+    <div className="flex flex-col p-2 gap-1 ">
       <label className="pl-2">{labelText}</label>
       <input
         type={type}

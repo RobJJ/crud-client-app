@@ -28,7 +28,6 @@ function ClientInfo(params) {
       </section>
       {/* notes */}
       <form
-        // onSubmit={testingFunc}
         onSubmit={(e) => handleNoteUpdate(e, uid, tempNoteState)}
         className="bg-blue-800 h-full p-5 flex flex-col gap-4"
       >
