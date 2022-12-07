@@ -1,18 +1,6 @@
-import React, { useState } from "react";
+import React from "react";
 import { useGlobalContext } from "../../../Context-Reducer/Context";
 //
-// const clientTestArray = [
-//   { name: "Rob Johnsen", id: "1" },
-//   { name: "Mai Jacobs", id: "2" },
-//   { name: "Tom Cruise", id: "3" },
-//   { name: "Joe Soap", id: "4" },
-//   { name: "Tim Burton", id: "5" },
-//   { name: "Mike Pooperson", id: "6" },
-//   { name: "Jordy Johnson", id: "7" },
-//   { name: "Bill Morrison", id: "8" },
-// ];
-//
-
 //
 
 function DebitClient(params) {

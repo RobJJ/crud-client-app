@@ -1,9 +1,8 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import {
-  FaAlignJustify,
-  FaBars,
-  FaGripLines,
+  FaAngleDoubleUp,
+  FaAngleDoubleDown,
   FaRegTrashAlt,
 } from "react-icons/fa";
 import { useGlobalContext } from "../../Context-Reducer/Context";
@@ -12,8 +11,7 @@ import { useGlobalContext } from "../../Context-Reducer/Context";
 
 function ClientListItem({ itemObj }) {
   const { name, uid, balance } = itemObj;
-  const { deleteClient, setFocusedClient, handleFocusedClientSetter } =
-    useGlobalContext();
+  const { deleteClient, handleFocusedClientSetter } = useGlobalContext();
   //
   //
   return (
@@ -26,10 +24,12 @@ function ClientListItem({ itemObj }) {
       >
         {name}
       </Link>
-      <div className="text-lg w-1/4 ">Balance: {balance}</div>
+      <div className="text-lg w-1/4 ">
+        <span>Bal: {balance}</span>
+      </div>
       <FaRegTrashAlt
         onClick={() => deleteClient(uid)}
-        className="text-2xl w-1/4  cursor-pointer"
+        className="text-2xl w-1/4  cursor-pointer text-red-500"
       />
     </div>
   );

@@ -139,6 +139,33 @@ const reducer = (state, action) => {
     };
   }
   //
+  if (action.type === "NAVIGATE_HOME") {
+    //
+    return {
+      ...state,
+      focusedClient: null,
+    };
+  }
+  //
+  if (action.type === "CLIENT_ADDED_NOTIFICATION_REF") {
+    //
+    action.payload.current.classList.remove("hidden");
+    setTimeout(() => {
+      action.payload.current.classList.add("hidden");
+    }, 2500);
+    //
+    return { ...state };
+  }
+  //
+  if (action.type === "CLIENT_TRANSACTION_NOTIFICATION_REF") {
+    action.payload.current.classList.remove("hidden");
+    setTimeout(() => {
+      action.payload.current.classList.add("hidden");
+    }, 2500);
+    //
+    return { ...state };
+  }
+  //
   return state;
 };
 //

@@ -10,7 +10,7 @@ function Navbar(params) {
   //
   const navigate = useNavigate();
   //
-  const { userInfo } = useGlobalContext();
+  const { userInfo, handleHomeNavigation } = useGlobalContext();
   //
   // This is a duplicated function for ease sake
   const handleSignOut = async () => {
@@ -31,7 +31,7 @@ function Navbar(params) {
 
       <Link
         to="/home"
-        // onClick={() => setIsClientBeingManaged(false)}
+        onClick={handleHomeNavigation}
         className="bg-blue-800 underline text-2xl flex items-center justify-center gap-2 text-white"
       >
         <FaHome />

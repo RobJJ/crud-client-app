@@ -1,4 +1,10 @@
-import React, { useContext, useState, useEffect, useReducer } from "react";
+import React, {
+  useContext,
+  useState,
+  useEffect,
+  useReducer,
+  useRef,
+} from "react";
 //
 import UserDatabaseServices from "../Firebase/firebase-services";
 import reducer from "./Reducer";
@@ -53,6 +59,12 @@ const AppProvider = ({ children }) => {
   const [newClient, setNewClient] = useState(newClientTemplate);
   const [debitClient, setDebitClient] = useState(debitClientTemplate);
   const [creditClient, setCreditClient] = useState(creditClientTemplate);
+  // Refs
+  const clientAddedRef = useRef();
+  const clientTransactionDebit = useRef();
+  const clientTransactionCredit = useRef();
+  const clientPageRef = useRef();
+  // const clientTransaction = useRef();
   //
   //
   const submitNewClient = (e) => {
@@ -66,12 +78,16 @@ const AppProvider = ({ children }) => {
       uid: uuidv4(),
       joined: new Date().toISOString().slice(0, 10),
     };
-    // Update DB
-    UserDatabaseServices.addClientToUser(userID, clientData);
-    // We are now going to add the client ID to the object
 
     // Update STATE
     dispatch({ type: "SUBMIT_NEW_CLIENT_TO_USER", payload: clientData });
+    // Toggle notification
+    dispatch({
+      type: "CLIENT_ADDED_NOTIFICATION_REF",
+      payload: clientAddedRef,
+    });
+    // Update DB
+    UserDatabaseServices.addClientToUser(userID, clientData);
     // reset newClient to template
     setNewClient(newClientTemplate);
   };
@@ -119,6 +135,19 @@ const AppProvider = ({ children }) => {
     // The dispatch will fail fast if this is being done from QuickBar
     dispatch({ type: "HYDRATE_FOCUSED_CLIENT", payload: clientUID });
     //
+    // Notification alert depending on where user is
+    if (!state.focusedClient) {
+      dispatch({
+        type: "CLIENT_TRANSACTION_NOTIFICATION_REF",
+        payload: clientTransactionCredit,
+      });
+    } else {
+      dispatch({
+        type: "CLIENT_TRANSACTION_NOTIFICATION_REF",
+        payload: clientPageRef,
+      });
+    }
+    //
     // Update DB
     const clientID = await getClientId(userID, clientUID);
     const oldClientData = await UserDatabaseServices.getSpecificClientFromUser(
@@ -154,14 +183,28 @@ const AppProvider = ({ children }) => {
     // set debitTemplate back to default
     setDebitClient(debitClientTemplate);
     //
+
     dispatch({
       type: "DEBIT_CLIENT_OF_USER",
       payload: { newDebitData, clientUID },
     });
+    // Notifcation to user - quickBar or clientPage - depends where you are
+    if (!state.focusedClient) {
+      dispatch({
+        type: "CLIENT_TRANSACTION_NOTIFICATION_REF",
+        payload: clientTransactionDebit,
+      });
+    } else {
+      dispatch({
+        type: "CLIENT_TRANSACTION_NOTIFICATION_REF",
+        payload: clientPageRef,
+      });
+    }
+    //
     // Update the focusedClient with new data too (if client is in focus)
     // The dispatch will fail fast if this is being done from QuickBar
     dispatch({ type: "HYDRATE_FOCUSED_CLIENT", payload: clientUID });
-    //
+    // //
     const clientID = await getClientId(userID, clientUID);
     const oldClientData = await UserDatabaseServices.getSpecificClientFromUser(
       userID,
@@ -188,12 +231,21 @@ const AppProvider = ({ children }) => {
     dispatch({ type: "SET_FOCUSED_CLIENT", payload: uid });
   };
   //
+  const handleHomeNavigation = () => {
+    dispatch({ type: "NAVIGATE_HOME" });
+  };
+  //
   const handleNoteUpdate = async (e, uid, tempNoteState) => {
     e.preventDefault();
     // Update state client with new notes...
     dispatch({
       type: "UPDATE_NOTES_OF_FOCUSED_CLIENT",
       payload: { uid, tempNoteState },
+    });
+    //
+    dispatch({
+      type: "CLIENT_TRANSACTION_NOTIFICATION_REF",
+      payload: clientPageRef,
     });
     // Update DB with new notes
     const clientId = await getClientId(state.userInfo.userID, uid);
@@ -277,6 +329,11 @@ const AppProvider = ({ children }) => {
         handleCredit,
         handleNoteUpdate,
         handleFocusedClientSetter,
+        clientAddedRef,
+        clientTransactionDebit,
+        clientTransactionCredit,
+        clientPageRef,
+        handleHomeNavigation,
       }}
     >
       {children}
