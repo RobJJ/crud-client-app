@@ -15,7 +15,7 @@ function HomeClient() {
   }
   //
   return (
-    <div className="w-full h-full bg-pink-300 p-5 pt-10 flex flex-col overflow-auto">
+    <div className="w-full h-full bg-blue-800 p-5 pt-10 flex flex-col overflow-auto">
       <div className="bg-blue-800 border-4 border-white h-full w-full rounded-xl flex flex-col ">
         {/* header - client name offset */}
         <div className="flex w-full justify-center ">

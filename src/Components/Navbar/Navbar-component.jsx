@@ -21,7 +21,7 @@ function Navbar(params) {
   };
   //
   return (
-    <div className="bg-blue-300 grid grid-cols-3 p-5 text-center font-mainNavBar tracking-widest">
+    <div className="bg-blue-800 grid grid-cols-3 p-5 text-center font-mainNavBar tracking-widest">
       <Link
         onClick={handleSignOut}
         className="bg-blue-800 underline text-2xl text-white"

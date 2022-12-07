@@ -21,7 +21,7 @@ function ClientList(params) {
   //
   //
   return (
-    <div className="bg-green-200 w-full h-full flex flex-col overflow-auto p-5 pt-0">
+    <div className="bg-blue-800 w-full h-full flex flex-col overflow-auto p-5 pt-0">
       <section className=" flex justify-center bg-blue-800 p-5 border-l-4 border-r-4 border-white">
         <input
           type="search"

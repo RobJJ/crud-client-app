@@ -31,7 +31,7 @@ function QuickBar(params) {
   };
   //
   return (
-    <div className="bg-purple-300 w-full flex flex-col p-5 pb-0 ">
+    <div className="bg-blue-800 w-full flex flex-col p-5 pb-0 ">
       {/* 3 QUICK BUTTONS */}
       <div className="grid grid-cols-3 p-2 gap-1 text-center text-xl bg-blue-800 text-white border-4 border-white rounded-t-xl">
         <div className=" ">
