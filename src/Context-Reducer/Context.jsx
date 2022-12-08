@@ -10,6 +10,8 @@ import UserDatabaseServices from "../Firebase/firebase-services";
 import reducer from "./Reducer";
 import { v4 as uuidv4 } from "uuid";
 import { onAuthStateChangedListener } from "../Firebase/firebase-auth";
+import toast, { Toaster } from "react-hot-toast";
+//
 
 //
 // Initial State for the reducer state
@@ -78,11 +80,11 @@ const AppProvider = ({ children }) => {
     );
     console.log(doesClientAlreadyExist);
     if (doesClientAlreadyExist) {
-      console.log(
-        "Error found... we can do something from here to stop next process"
-      );
+      // Use react-toast to alert user..
+      toast.error("Client name already in use");
+      return;
     }
-    console.log("Testing to see if this still runs");
+    //
     const userID = state.userInfo.userID;
     const clientData = {
       ...newClient,
