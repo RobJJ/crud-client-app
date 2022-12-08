@@ -43,7 +43,7 @@ function ClientTransaction(params) {
         onSubmit={transactionType === "debit" ? handleDebit : handleCredit}
         className="bg-blue-800 max-w-md w-full h-full flex flex-col gap-2 p-2 "
       >
-        <section className="bg-blue-800 text-center flex p-2 gap-1 text-xl">
+        <section className="bg-blue-800 text-blue-800 font-bold text-center flex p-2 gap-1 text-xl">
           <div
             className={`w-1/2 rounded-xl ${
               transactionType === "debit" ? "bg-blue-200" : "bg-white"
@@ -168,7 +168,7 @@ function ClientTransaction(params) {
             <div className="bg-blue-800 text-center ">
               <button
                 type="submit"
-                className="bg-green-500 text-white border-2 border-white p-1 rounded-xl"
+                className="bg-green-500 text-white font-bold border-2 border-white p-1 rounded-xl"
               >
                 {transactionType === "debit" ? "Debit Client" : "Credit Client"}
               </button>

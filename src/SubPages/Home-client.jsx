@@ -20,8 +20,8 @@ function HomeClient() {
       <div className="bg-blue-800 border-4 border-white h-full w-full rounded-xl flex flex-col ">
         {/* header - client name offset */}
         <div className="flex w-full justify-center">
-          <h2 className="bg-blue-800 border-4 border-white text-white text-center underline w-1/2 rounded-2xl font-bold text-xl tracking-wider p-2 relative bottom-6">
-            {focusedClient.name}
+          <h2 className="bg-blue-800 font-muktaTitle font-bold border-4 border-white text-white text-center underline w-1/2 rounded-2xl  text-xl tracking-widest p-2 relative bottom-6">
+            {focusedClient.name.toUpperCase()}
             <span ref={clientPageRef} className="absolute hidden right-5 top-2">
               <FaCheck className="text-green-500 text-3xl " />
             </span>

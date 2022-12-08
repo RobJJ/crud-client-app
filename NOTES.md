@@ -10,11 +10,11 @@ Find a possible solution to the id (url uid) problem...
 .
 Dont actually need the name in the debit and credit note transaction page ... we are using it for matching... look into a way to remove this.
 .
-.
-Look into finding a way to handle debit and credit in one function..
-.
-.
-Need to add a check for addClient, to make sure no two clients have the same name
+..
+Add a delete option to the debits and credits in the client-receipt component
 .
 .
-Whne clicking HOME... maybe set focusedClient back to null ?
+Style the scroll bars to have no background. WIll look much better on the blue backdrop
+https://www.npmjs.com/package/tailwind-scrollbar
+.
+.

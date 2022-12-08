@@ -9,7 +9,7 @@ function ClientNav(params) {
         end
         className={({ isActive }) =>
           [
-            "w-1/3 underline text-white",
+            "w-1/3 font-muktaTitle underline text-white",
             isActive ? "bg-slate-400 rounded-xl" : null,
           ]
             .filter(Boolean)
@@ -22,7 +22,7 @@ function ClientNav(params) {
         to="receipts"
         className={({ isActive }) =>
           [
-            "w-1/3 underline text-white",
+            "w-1/3 font-muktaTitle underline text-white",
             isActive ? "bg-slate-400 rounded-xl" : null,
           ]
             .filter(Boolean)
@@ -35,7 +35,7 @@ function ClientNav(params) {
         to="transaction"
         className={({ isActive }) =>
           [
-            "w-1/3 underline text-white",
+            "w-1/3 font-muktaTitle underline text-white",
             isActive ? "bg-slate-400 rounded-xl" : null,
           ]
             .filter(Boolean)

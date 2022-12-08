@@ -4,11 +4,11 @@ import React from "react";
 function Welcome(params) {
   //
   return (
-    <div className="w-full h-3/5 p-2 bg-blue-500 border-4 border-white rounded-t-xl flex flex-col gap-5 items-center">
-      <h2 className="text-white font-mainNavBar text-4xl tracking-widest underline">
+    <div className="w-full h-3/5 p-2 bg-blue-500 border-4 border-white rounded-t-xl flex flex-col gap-5 items-center text-center overflow-auto">
+      <h2 className="text-white mt-2 font-mainNavBar text-4xl tracking-widest underline">
         Private client tracker
       </h2>
-      <p className="text-white w-full h-full text-center p-2">
+      <p className="text-white font-chivoReg w-full h-full p-2 overflow-auto">
         This app was designed for a specific user with the need to track private
         client information, receipts, notes, and session balances.
         <br />

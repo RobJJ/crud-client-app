@@ -38,7 +38,7 @@ function QuickBar(params) {
           <div
             onClick={handleQuickRequest}
             data-tag="quick-add"
-            className="cursor-pointer hover:underline"
+            className=" font-muktaTitle cursor-pointer hover:underline"
           >
             ADD CLIENT
           </div>
@@ -47,7 +47,7 @@ function QuickBar(params) {
           <div
             onClick={handleQuickRequest}
             data-tag="quick-debit"
-            className="cursor-pointer hover:underline"
+            className=" font-muktaTitle cursor-pointer hover:underline"
           >
             DEBIT
           </div>
@@ -56,7 +56,7 @@ function QuickBar(params) {
           <div
             onClick={handleQuickRequest}
             data-tag="quick-credit"
-            className="cursor-pointer hover:underline"
+            className=" font-muktaTitle cursor-pointer hover:underline"
           >
             CREDIT
           </div>
