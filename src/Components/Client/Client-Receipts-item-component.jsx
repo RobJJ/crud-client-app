@@ -14,11 +14,11 @@ function ReceiptItem({ receipt }) {
   };
   return (
     <div
-      className={`flex flex-col ${
+      className={`flex flex-col p-1 ${
         amount ? "bg-blue-200" : "bg-yellow-200"
-      } rounded-xl text-center`}
+      } rounded-xl text-center border-white border-2 hover:border-black hover:cursor-pointer`}
     >
-      <div onClick={toggleNote} className={`w-full flex gap-2   text-xl p-2 `}>
+      <div onClick={toggleNote} className={`w-full flex gap-2 text-xl`}>
         <span className="w-1/3 ">{date}</span>
         <span className="w-1/3 ">{amount ? amount : "N/A"}</span>
         <span className="w-1/3 ">{sessions}</span>
