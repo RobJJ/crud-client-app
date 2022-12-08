@@ -4,6 +4,7 @@ import { useGlobalContext } from "../../../Context-Reducer/Context";
 //
 function AddClient(params) {
   //
+  console.log("Add Client being called!");
   // newClient is an object with all the client properties
   const { newClient, setNewClient, submitNewClient } = useGlobalContext();
   //

@@ -72,6 +72,17 @@ const AppProvider = ({ children }) => {
     e.preventDefault();
     //
     console.log("submitNewClient called: ");
+    // Run name checker test
+    const doesClientAlreadyExist = state.clients.some(
+      (client) => client.name.toLowerCase() === newClient.name.toLowerCase()
+    );
+    console.log(doesClientAlreadyExist);
+    if (doesClientAlreadyExist) {
+      console.log(
+        "Error found... we can do something from here to stop next process"
+      );
+    }
+    console.log("Testing to see if this still runs");
     const userID = state.userInfo.userID;
     const clientData = {
       ...newClient,
@@ -263,7 +274,7 @@ const AppProvider = ({ children }) => {
   };
   // This should be hydrateState... this function runs everytime the user has refreshed the page or navigated... so why not use it to hydrate the local state
   const hydrateState = async (userObj) => {
-    // console.log("In Hydrate.. userOjb is :", Boolean(userObj));
+    console.log("Hydrated State called. ");
     // Populate an object with users basic Info -> put in state
     const userBasicInfoObj = await UserDatabaseServices.getUser(
       userObj.uid
@@ -272,14 +283,10 @@ const AppProvider = ({ children }) => {
       return { ...res.data().userInfo, userID: userObj.uid };
     });
     // Get the collection of userClients
-    // If empty, set userClients arr to empty... else
-    // Map over the collection and spread docs into an array
-    //
     const userClientsDocs = await UserDatabaseServices.getAllUsersClients(
       userObj.uid
     );
     // Created array of objects
-
     const userClients = userClientsDocs.docs.map((doc) => ({
       ...doc.data(),
     }));
@@ -297,17 +304,11 @@ const AppProvider = ({ children }) => {
         // The trade off though, is that we can get all the info available
         await UserDatabaseServices.createUserDocFromAuth(user);
         // hydrate the user when signing in
-        console.log("user is true ???? UseEffect has run");
+        console.log("Context called: User is True! User Auth'd");
         hydrateState(user);
       } else {
-        console.log(
-          "User on login not true?? dafuk... i will wipe out state here??"
-        );
+        console.log("Context called. User is no longer true.");
       }
-      // this shit runs when user logs in and logs out
-      // console.log("Coming from Context", user);
-      // dispatch({ type: "HYDRATE_USER_STATE", payload: user });
-      // setting currentUser.. This is not helpful
     });
     return unsubscribe;
   }, []);
