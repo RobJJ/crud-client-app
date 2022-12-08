@@ -45,7 +45,7 @@ function ClientTransaction(params) {
       >
         <section className="bg-blue-800 text-blue-800 font-bold text-center flex p-2 gap-1 text-xl">
           <div
-            className={`w-1/2 rounded-xl ${
+            className={`w-1/2 hover:cursor-pointer rounded-xl ${
               transactionType === "debit" ? "bg-blue-200" : "bg-white"
             }`}
             onClick={() => setTransactionType("debit")}
@@ -53,7 +53,7 @@ function ClientTransaction(params) {
             Debit
           </div>
           <div
-            className={`w-1/2 rounded-xl ${
+            className={`w-1/2 hover:cursor-pointer rounded-xl ${
               transactionType === "credit" ? "bg-blue-200" : "bg-white"
             }`}
             onClick={() => setTransactionType("credit")}
