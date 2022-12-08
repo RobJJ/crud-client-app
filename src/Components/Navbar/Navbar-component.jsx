@@ -3,6 +3,7 @@ import { Link, useNavigate } from "react-router-dom";
 import { useGlobalContext } from "../../Context-Reducer/Context";
 import { FaHome } from "react-icons/fa";
 import { ReactComponent as Spinner } from "../LoadingIcon/Bars-0.8s-234px.svg";
+import toast, { Toaster } from "react-hot-toast";
 
 //
 import { signOutUser } from "../../Firebase/firebase-auth";
@@ -18,6 +19,10 @@ function Navbar(params) {
   const handleSignOut = async () => {
     // Sign out the user from firestore
     await signOutUser().then(console.log("User logged out"));
+    // Notify user of signOut. Use timeout to delay message
+    setTimeout(() => {
+      toast.success("You signed out", { duration: 5000 });
+    }, 500);
     // changed to from "/" to "/login" for testing purposes
     navigate("/login");
   };
