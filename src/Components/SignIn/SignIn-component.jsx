@@ -5,6 +5,8 @@ import {
   signInWithGooglePopup,
   signOutUser,
 } from "../../Firebase/firebase-auth";
+import toast, { Toaster } from "react-hot-toast";
+
 //
 
 function SignIn(params) {
@@ -14,15 +16,13 @@ function SignIn(params) {
   //
   const handleSignIn = async () => {
     const res = await signInWithGooglePopup();
+    //
+    setTimeout(() => {
+      toast.success("You signed in", { duration: 5000 });
+    }, 500);
 
     navigate("/home");
   };
-  //
-  // const handleSignOut = async () => {
-  //   // Sign out the user from firestore
-  //   await signOutUser().then(console.log("User logged out"));
-  //   navigate("/login");
-  // };
   //
   return (
     <div className="w-full p-5 bg-blue-800 border-b-4 border-x-4 border-white rounded-b-xl flex flex-col justify-center items-center">
