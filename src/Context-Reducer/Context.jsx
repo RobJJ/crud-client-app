@@ -57,6 +57,8 @@ const AppContext = React.createContext();
 //
 const AppProvider = ({ children }) => {
   //
+  const [userActive, setUserActive] = useState(false);
+  //
   const [state, dispatch] = useReducer(reducer, initialState);
   const [newClient, setNewClient] = useState(newClientTemplate);
   const [debitClient, setDebitClient] = useState(debitClientTemplate);
@@ -319,6 +321,8 @@ const AppProvider = ({ children }) => {
     <AppContext.Provider
       value={{
         ...state,
+        userActive,
+        setUserActive,
         dispatch,
         newClient,
         setNewClient,

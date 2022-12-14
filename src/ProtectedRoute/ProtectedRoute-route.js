@@ -1,20 +1,19 @@
 import React from "react";
-import { Navigate, Outlet, useLocation } from "react-router-dom";
+import { Navigate, Outlet } from "react-router-dom";
 import { useGlobalContext } from "../Context-Reducer/Context";
 //
 function ProtectedRoute() {
-  const { currentUser } = useGlobalContext();
-
-  if (!currentUser) {
+  const { userActive } = useGlobalContext();
+  console.log("ProtectedRoute being called!");
+  if (!userActive) {
     return <Navigate to="/login" />;
   }
   //
-  return currentUser ? <Outlet /> : <Navigate to="/login" />;
+  return userActive ? <Outlet /> : <Navigate to="/login" />;
 }
 
 export default ProtectedRoute;
 
-// let location = useLocation();
-// removed this var from the component as it was attributing to rerenders
-// state={{ from: location }} replace
-// removed this attribute from <Navigation/>, as it was causing rerenders
+// How I found this component
+//   const { currentUser } = useGlobalContext();
+// Was using this var to check if condition... dont know where its coming from thgou... going to change to state.userInfo

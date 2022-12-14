@@ -12,16 +12,20 @@ import toast, { Toaster } from "react-hot-toast";
 function SignIn(params) {
   const navigate = useNavigate();
   //
-  // const { currentUser } = useGlobalContext();
+  const { setUserActive } = useGlobalContext();
   //
   const handleSignIn = async () => {
     const res = await signInWithGooglePopup();
     //
+    console.log("SignIn..Res : ", res.user.emailVerified);
+    if (res.user.emailVerified) {
+      setUserActive(true);
+    }
+    navigate("/home");
+    //
     setTimeout(() => {
       toast.success("You signed in", { duration: 5000 });
     }, 500);
-
-    navigate("/home");
   };
   //
   return (

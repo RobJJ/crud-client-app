@@ -13,12 +13,13 @@ function Navbar(params) {
   //
   const navigate = useNavigate();
   //
-  const { userInfo, handleHomeNavigation } = useGlobalContext();
+  const { userInfo, handleHomeNavigation, setUserActive } = useGlobalContext();
   //
   // This is a duplicated function for ease sake
   const handleSignOut = async () => {
     // Sign out the user from firestore
     await signOutUser().then(console.log("User logged out"));
+    setUserActive(false);
     // Notify user of signOut. Use timeout to delay message
     setTimeout(() => {
       toast.success("You signed out", { duration: 5000 });

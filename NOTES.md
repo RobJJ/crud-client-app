@@ -18,6 +18,3 @@ Style the scroll bars to have no background. WIll look much better on the blue b
 https://www.npmjs.com/package/tailwind-scrollbar
 .
 .
-.
-current leaving point..
-when new client is added to the list.. the toasts no longer are generated? the addClient console.log is also being called weirdly.. test this out
