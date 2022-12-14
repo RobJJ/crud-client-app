@@ -4,6 +4,8 @@ import { useGlobalContext } from "../../../Context-Reducer/Context";
 //
 
 function DebitClient(params) {
+  console.log("QuickBar: Debit Client!");
+  //
   const { clients, handleDebit, debitClient, setDebitClient } =
     useGlobalContext();
   //

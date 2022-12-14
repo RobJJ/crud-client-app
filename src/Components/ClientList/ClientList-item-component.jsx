@@ -7,16 +7,24 @@ import {
 } from "react-icons/fa";
 import { useGlobalContext } from "../../Context-Reducer/Context";
 import ModalDelete from "../ModalDelete/ModalDelete-component";
+import toast, { Toaster } from "react-hot-toast";
 //
 //
 
 function ClientListItem({ itemObj }) {
+  //
   const { name, uid, balance } = itemObj;
   const { deleteClient, handleFocusedClientSetter } = useGlobalContext();
   const [modalActive, setModalActive] = useState(false);
   //
   const handleTrashBinClick = (uid) => {
     console.log("trashBin clicked");
+    // Testing the notication to user - are you sure??
+    toast.success("Are you sure?", {
+      duration: 4000,
+      icon: "❗️",
+    });
+    //
     setModalActive(!modalActive);
   };
   const handleSelection = (e) => {
@@ -25,11 +33,14 @@ function ClientListItem({ itemObj }) {
     const choice = e.target.dataset.tag;
     // If no, close selection bar
     if (choice === "confirm-no") {
-      handleTrashBinClick();
+      setModalActive(!modalActive);
     }
     // If yes, then delete the user
     if (choice === "confirm-yes") {
       deleteClient(uid);
+      toast.success("Client deleted", {
+        duration: 4000,
+      });
     }
   };
   //

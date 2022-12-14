@@ -78,7 +78,7 @@ const AppProvider = ({ children }) => {
     const doesClientAlreadyExist = state.clients.some(
       (client) => client.name.toLowerCase() === newClient.name.toLowerCase()
     );
-    console.log(doesClientAlreadyExist);
+    //
     if (doesClientAlreadyExist) {
       // Use react-toast to alert user..
       toast.error("Client name already in use");

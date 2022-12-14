@@ -15,6 +15,8 @@ import { useGlobalContext } from "../../../Context-Reducer/Context";
 //
 function CreditClient(params) {
   //
+  console.log("QuickBar: Credit Client!");
+  //
   const { clients, creditClient, setCreditClient, handleCredit } =
     useGlobalContext();
   //
