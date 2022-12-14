@@ -31,7 +31,8 @@ function ClientList(params) {
   //
   //
   return (
-    <div className="bg-blue-800 w-full h-full flex flex-col overflow-auto p-5 pt-0">
+    <div className="bg-blue-800 w-full h-full flex flex-col overflow-auto p-5 pt-0 smlr:p-0">
+      {/* SEARCH CLIENT SECTION */}
       <section className=" flex justify-center items-center bg-blue-800 p-5 border-l-4 border-r-4 border-white relative">
         <input
           type="search"
@@ -52,8 +53,8 @@ function ClientList(params) {
           <FaAngleDoubleDown className="text-3xl text-red-500" />
         </div>
       </section>
-
-      <section className="bg-blue-800 overflow-auto h-full w-full flex flex-col gap-3 mb-2 items-center border-l-4 border-r-4 border-b-4 border-white rounded-b-xl">
+      {/* CLIENT LIST SECTION */}
+      <section className="bg-blue-800 overflow-auto h-full w-full flex flex-col gap-3 mb-2 items-center border-l-4 border-r-4 border-b-4 border-white rounded-b-xl med:px-2">
         {filteredClients.map((client) => (
           <ClientListItem key={client.uid} itemObj={client} />
         ))}
