@@ -14,9 +14,9 @@ function ClientInfo(params) {
   //
   //
   return (
-    <div className="bg-blue-800 w-full h-full flex flex-col p-2 gap-2">
+    <div className="bg-blue-800 w-full h-full flex flex-col p-2  gap-2">
       {/* basic info */}
-      <section className="bg-blue-800 text-blue-800 font-bold flex gap-4 p-2 text-center text-xl">
+      <section className="bg-blue-800 text-blue-800 font-bold flex gap-4 p-2 text-center text-xl smlr:text-lg">
         <div className="bg-white w-1/2 rounded-xl">
           <div className="overflow-auto">{email}</div>
           <div>{contact}</div>
@@ -34,7 +34,7 @@ function ClientInfo(params) {
         <textarea
           value={tempNoteState}
           onChange={dummyHandlerForNow}
-          className="h-full w-full resize-none rounded-xl p-5 text-lg font-chivoReg"
+          className="h-full w-full resize-none rounded-xl p-5 text-lg font-chivoReg smlr:text-base"
         ></textarea>
 
         {/* update client button */}
