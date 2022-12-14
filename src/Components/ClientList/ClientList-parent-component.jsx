@@ -43,13 +43,22 @@ function ClientList(params) {
             setSearchedLetters(e.target.value);
           }}
         />
-        <div ref={clientAddedRef} className=" hidden absolute right-10">
+        <div
+          ref={clientAddedRef}
+          className=" hidden absolute right-10 med:right-8 smlr:right-5 smlst:right-3"
+        >
           <FaUserCheck className="text-green-500 text-4xl" />
         </div>
-        <div ref={clientTransactionDebit} className="hidden absolute right-12">
+        <div
+          ref={clientTransactionDebit}
+          className="hidden absolute right-12 med:right-8 smlr:right-5"
+        >
           <FaAngleDoubleUp className="text-3xl text-green-500" />
         </div>
-        <div ref={clientTransactionCredit} className="hidden absolute right-12">
+        <div
+          ref={clientTransactionCredit}
+          className="hidden absolute right-12 med:right-8 smlr:right-5"
+        >
           <FaAngleDoubleDown className="text-3xl text-red-500" />
         </div>
       </section>
