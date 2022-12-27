@@ -307,9 +307,11 @@ const AppProvider = ({ children }) => {
         // It has made it slow though... the initial load of the page...
         // The trade off though, is that we can get all the info available
         await UserDatabaseServices.createUserDocFromAuth(user);
+
         // hydrate the user when signing in
         console.log("Context called: User is True! User Auth'd");
         hydrateState(user);
+        setUserActive(true);
       } else {
         console.log("Context called. User is no longer true.");
       }
