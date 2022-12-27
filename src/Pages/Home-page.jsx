@@ -7,7 +7,7 @@ import Navbar from "../Components/Navbar/Navbar-component";
 //
 function HomePage(params) {
   return (
-    <div className="max-w-screen-md w-screen h-screen m-auto bg-blue-200 flex flex-col">
+    <div className="max-w-[800px] w-screen h-screen m-auto bg-blue-200 flex flex-col">
       <Toaster />
       <Navbar />
       <Outlet />

@@ -18,3 +18,6 @@ Style the scroll bars to have no background. WIll look much better on the blue b
 https://www.npmjs.com/package/tailwind-scrollbar
 .
 .
+.
+Discuss the implementation of the ProtectedRoute and the way the conditional check works... Not sure if this is a good approach - ie. Having the Boolean varaible sitting in the AppProvider.... something feels off about it...
+Check refresh!!
