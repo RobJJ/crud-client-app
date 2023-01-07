@@ -3,4 +3,7 @@ Discuss the implementation of the ProtectedRoute and the way the conditional che
 Check refresh!! -> the way i've implemented it doesnt work that well..
 It's calling protectRoute first and which sees the userActive state as false, which routes to landing page login... then the context is rendered which sets to true and then reroutes the user back to their home page...
 .
+Discuss how to keep large data -
 .
+.
+todo tomorrow: incorp the sessionStorage to handle user token and login state

@@ -5,9 +5,9 @@ import { useGlobalContext } from "../Context-Reducer/Context";
 function ProtectedRoute() {
   const { userActive } = useGlobalContext();
   console.log("ProtectedRoute being called!");
-  if (!userActive) {
-    return <Navigate to="/login" />;
-  }
+  // if (!userActive) {
+  //   return <Navigate to="/login" />;
+  // }
   //
   return userActive ? <Outlet /> : <Navigate to="/login" />;
 }
