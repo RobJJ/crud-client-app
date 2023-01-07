@@ -10,6 +10,7 @@ import toast, { Toaster } from "react-hot-toast";
 //
 
 function SignIn(params) {
+  console.log("loading signin");
   const navigate = useNavigate();
   //
   const { setUserActive } = useGlobalContext();

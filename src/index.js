@@ -11,7 +11,7 @@ const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
   <React.StrictMode>
     <AppProvider>
-      <BrowserRouter>
+      <BrowserRouter basename="crud-client-app">
         <App />
       </BrowserRouter>
     </AppProvider>
